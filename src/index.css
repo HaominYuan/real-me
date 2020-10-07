@@ -3,7 +3,8 @@ body {
   margin: 20px;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 30px;
 }
 
@@ -38,6 +39,53 @@ ol, ul {
 
 .kbd-navigation .square:focus {
   background: #ddd;
+}
+
+.winner {
+  color: red;
+}
+
+.direction1 {
+  background: linear-gradient(
+    transparent 0%,
+    transparent calc(50% - 1px),
+    #1069b2 50%,
+    transparent calc(50% + 1px),
+    transparent 100%
+  );
+}
+
+.direction2 {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent calc(50% - 1px),
+    #1069b2 50%,
+    transparent calc(50% + 1px),
+    transparent 100%
+  );
+}
+
+.direction3 {
+  background: linear-gradient(
+    to bottom left,
+    transparent 0%,
+    transparent calc(50% - 1px),
+    #1069b2 50%,
+    transparent calc(50% + 1px),
+    transparent 100%
+  );
+}
+
+.direction4 {
+  background: linear-gradient(
+    to bottom right,
+    transparent 0%,
+    transparent calc(50% - 1px),
+    #1069b2 50%,
+    transparent calc(50% + 1px),
+    transparent 100%
+  );
 }
 
 .game {
