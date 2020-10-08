@@ -17,7 +17,7 @@ jobs:
       matrix:
               node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2 # 第一步，检出仓库副本
+    - uses: action/checkout@v2 # 第一步，检出仓库副本
     
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
