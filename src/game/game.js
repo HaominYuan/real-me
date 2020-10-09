@@ -198,4 +198,4 @@ function calculateWinner(squares) {
         };
 }
 
-export default {Square, Row, Board, Game}
+export default {Game}
