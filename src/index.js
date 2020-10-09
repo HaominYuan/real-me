@@ -144,7 +144,6 @@ class Game extends React.Component {
 
     return (
       <div className="game">
-        <div>井字棋</div>
         <div className="game-board">
           <Board
             winner={current.winner}
