@@ -151,11 +151,13 @@ class Game extends React.Component {
                 : `Go to game start`;
 
             return (
-                <li key={move}>
+                <div key={move}>
                     <button onClick={() => this.jumpTo(move)}>{desc}</button>
-                </li>
+                </div>
             );
         });
+
+        console.log(moves)
 
         if (reverse) 
             moves.reverse();
@@ -178,7 +180,7 @@ class Game extends React.Component {
                     <div>
                         <button onClick={() => this.reverse()}>{reverse}</button>
                     </div>
-                    <ol>{moves}</ol>
+                    <div>{moves}</div>
                 </div>
             </div>
         );

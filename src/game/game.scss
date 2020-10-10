@@ -1,0 +1,86 @@
+.game {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.game-board {
+  flex: 0 0 150px; 
+}
+
+.game-info {
+  flex: 0 0 200px;
+}
+
+.moves-bold {
+  font-weight: bold;
+}
+
+.square-winner {
+  color: red;
+}
+
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.status {
+    margin-bottom: 10px;
+}
+
+.square {
+    color: #FFCCCC;
+    background-color: #FFFFCC;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
+}
+
+.square:focus {
+    outline: none;
+}
+
+.kbd-navigation .square:focus {
+    background: #ddd;
+}
+
+.winner {
+    color: red;
+}
+
+.direction1 {
+    background: #CCFFFF linear-gradient(transparent 0%, transparent calc(50% - 1px), #1069b2 50%, transparent calc(50% + 1px), transparent 100%);
+}
+
+.direction2 {
+    background: #CCFFFF linear-gradient(to right, transparent 0%, transparent calc(50% - 1px), #1069b2 50%, transparent calc(50% + 1px), transparent 100%);
+}
+
+.direction3 {
+    background: #CCFFFF linear-gradient(to bottom left, transparent 0%, transparent calc(50% - 1px), #1069b2 50%, transparent calc(50% + 1px), transparent 100%);
+}
+
+.direction4 {
+    background: #CCFFFF linear-gradient(to bottom right, transparent 0%, transparent calc(50% - 1px), #1069b2 50%, transparent calc(50% + 1px), transparent 100%);
+}
+
+button {
+    background-color: #FFFFCC;
+    border: 1px solid #999;
+    color: #3399CC;
+}
+
+button:focus {
+    outline: none;
+}
+
