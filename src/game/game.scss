@@ -1,23 +1,23 @@
 .game {
-  height: 100%;
-  display: flex;
-  justify-content: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .game-board {
-  flex: 0 0 150px; 
+    flex: 0 0 150px;
 }
 
 .game-info {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .moves-bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .square-winner {
-  color: red;
+    color: red;
 }
 
 .board-row:after {
@@ -83,4 +83,3 @@ button {
 button:focus {
     outline: none;
 }
-

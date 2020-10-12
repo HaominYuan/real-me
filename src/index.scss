@@ -1,13 +1,21 @@
 $font-stack: Helvetica, sans-serif;
-$primary-color: #fbfbfb;
+$primary-color: rgb(208, 245, 245);
 $font-color: #FFCCCC;
 
-html, body {
+html, body, #root {
     height: 100%;
-    // display: flex;
-    // justify-content: center;
-    background-color: $primary-color;
-    // color: $font-color;
     margin: 0;
     padding: 0;
 }
+
+
+.index {
+    height: 100%;
+    background-color: $primary-color;
+    display: flex;
+    justify-content: center;
+}
+
+// .index-left {
+//     flex: 0 0 auto;
+// }
