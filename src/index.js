@@ -1,7 +1,8 @@
-// eslint-disable
+// eslint-disable-next-line
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import CommentApp from "./comment/CommentApp";
+// eslint-disable-next-line
 import Game from "./game/Game"
 import "./index.scss" 
 
