@@ -1,4 +1,5 @@
 import React from "react";
+import "./game.scss"
 
 function Square(props) {
     return (
@@ -248,4 +249,4 @@ function calculateWinner(squares) {
         };
 }
 
-export default {Game}
+export default Game

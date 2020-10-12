@@ -1,8 +1,10 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import game from "./game/game"
-import "./game/game.scss"
-import "./index.scss"
+import CommentApp from "./comment/CommentApp";
+import Game from "./game/Game"
+import "./index.scss" 
 
 
-ReactDOM.render(<game.Game />, document.getElementById("root"));
+// ReactDOM.render(<Game />, document.getElementById("root"));
+
+ReactDOM.render(<CommentApp />, document.getElementById("root"));
