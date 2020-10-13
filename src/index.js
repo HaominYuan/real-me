@@ -2,28 +2,25 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import CommentApp from "./comment/CommentApp";
-// eslint-disable-next-line
 import Game from "./game/Game"
 import Clock from "./clock/Clock"
 import "./index.scss"
-
 
 // eslint-disable-next-line
 class Index extends Component {
     render() {
         return (
             <div className='index'>
-                <Clock />
-                <Game />
-                <CommentApp />
+                {this.props.children}
+
             </div>
         )
     }
 }
 
-// ReactDOM.render(<Game />, document.getElementById("root"));
-// ReactDOM.render(<CommentApp />, document.getElementById("root"));
-
-
-ReactDOM.render(<Index />, document.getElementById("root"))
+ReactDOM.render(<Index>
+    <Clock />
+    <Game />
+    <CommentApp />
+</Index>, document.getElementById("root"))
 
