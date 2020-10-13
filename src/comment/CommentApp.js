@@ -4,8 +4,20 @@ import CommentList from './CommentList'
 import "./comment.scss"
 
 class CommentApp extends Component {
+    constructor() {
+        super()
+        this.state = {
+            comments: [
+            ]
+        }
+    }
+
     handleSubmitComment(comment) {
-        console.log(comment)
+        const comments = this.state.comments.slice()
+        comments.push(comment)
+        this.setState({
+            comments
+        })
     }
 
     render() {
@@ -14,7 +26,7 @@ class CommentApp extends Component {
                 <CommentInput 
                     onSubmit={this.handleSubmitComment.bind(this)}
                 />
-                <CommentList />
+                <CommentList comments={this.state.comments}/>
             </div>
         )
 

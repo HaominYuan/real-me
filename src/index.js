@@ -18,7 +18,7 @@ class Index extends Component {
     }
 }
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+// ReactDOM.render(<Game />, document.getElementById("root"));
 // ReactDOM.render(<CommentApp />, document.getElementById("root"));
 
-// ReactDOM.render(<Index />, document.getElementById("root"))
+ReactDOM.render(<Index />, document.getElementById("root"))
