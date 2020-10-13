@@ -1,7 +1,8 @@
 .game {
     height: 100%;
+    flex-basis: 20%;
     display: flex;
-    justify-content: center;
+    padding: 20px;
 }
 
 .game-board {
