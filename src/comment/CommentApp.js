@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CommentInput from './CommentInput'
+import AutoCommentInput from './AutoCommentInput'
 import CommentList from './CommentList'
 import "./comment.scss"
 
@@ -23,7 +23,7 @@ class CommentApp extends Component {
     render() {
         return (
             <div className="wrapper">
-                <CommentInput 
+                <AutoCommentInput 
                     onSubmit={this.handleSubmitComment.bind(this)}
                 />
                 <CommentList comments={this.state.comments}/>

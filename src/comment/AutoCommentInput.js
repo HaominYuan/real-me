@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import "./comment.scss"
 
-class CommentInput extends Component {
+class AutoCommentInput extends Component {
     constructor() {
         super()
         this.state = {
@@ -32,7 +32,7 @@ class CommentInput extends Component {
                 <div className='comment-field'>
                     <span className='comment-field-name'>用户名：</span>
                     <div className='comment-field-input'>
-                        <input
+                        <input ref={(input) => this.input = input}
                             value={this.state.username}
                             onChange={this
                                 .handleUsernameChange
@@ -60,6 +60,10 @@ class CommentInput extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        this.input.focus()
+    }
 }
 
-export default CommentInput
+export default AutoCommentInput

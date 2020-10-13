@@ -3,9 +3,9 @@ $primary-color: rgb(208, 245, 245);
 $font-color: #FFCCCC;
 
 html, body, #root {
-    background-color: $primary-color;
     margin: 0;
     padding: 0;
+    background-color: $primary-color;
 }
 
 .index {
