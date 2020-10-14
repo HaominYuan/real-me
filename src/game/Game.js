@@ -1,83 +1,8 @@
 import React from "react";
+import Board from './Board'
+
 import "./game.scss"
 
-function Square(props) {
-    return (
-        <button
-            className={`square ${props.direction
-                ? `winner ${props.direction}`
-                : null}`}
-            onClick={props.onClick}>
-            {props.value}
-        </button>
-    );
-}
-
-class Row extends React.Component {
-    renderSquare(i) {
-        let direction = null
-        if (this.props.winner.indices && this.props.winner.indices.some((x) => x === i)) {
-            direction = this.props.winner.direction
-        }
-
-        return (
-            <Square
-                key={i}
-                value={this
-                    .props
-                    .squares[i]}
-                onClick={() => this.props.onClick(i)}
-                direction={direction}/>
-        );
-    }
-
-    render() {
-        const begin = this.props.begin;
-        const number = this.props.number;
-        const row = Array(number)
-            .fill(null)
-            .map((value, index) => this.renderSquare(begin + index));
-
-        return (<div className="board-row">
-            {row}
-        </div>);
-    }
-}
-
-class Board extends React.Component {
-    render() {
-        const winner = this.props.winner;
-
-        const status = winner.name
-            ? winner.name === "Tie"
-                ? "Tie"
-                : "Winner: " + winner.name
-            : "Next player: " + (
-                this.props.xIsNext
-                    ? "X"
-                    : "O"
-            );
-
-        const map = Array(3)
-            .fill(null)
-            .map((value, index) => {
-                return <Row
-                    key={index}
-                    begin={index * 3}
-                    number={3}
-                    squares={this.props.squares}
-                    onClick={this.props.onClick}
-                    winner={this.props.winner}/>;
-            });
-
-        return (
-            <div>
-                <div className="status">{status}</div>
-                {map}
-            </div>
-        );
-    }
-}
 
 class Game extends React.Component {
     constructor(props) {
