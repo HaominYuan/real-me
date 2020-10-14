@@ -1,19 +1,27 @@
 import React from "react";
 import Board from './Board'
-
+import PropTypes from "prop-types"
 import "./game.scss"
 
 
 class Game extends React.Component {
+    static propTypes = {
+        length: PropTypes.number.isRequired
+    }
+
+    static defaultProps = {
+        length: 3
+    }
+
     constructor(props) {
         super(props);
         this.state = {
             history: [
                 {
-                    squares: Array(9).fill(null),
+                    squares: Array(Math.pow(this.props.length, 2)).fill({}),
                     xIsNext: false,
-                    winner: {},
-                    position: undefined
+                    winner: null,
+                    position: null
                 }
             ],
             reverse: false
@@ -23,16 +31,20 @@ class Game extends React.Component {
     handleClick(i) {
         const history = this.state.history;
         const current = history[history.length - 1];
-        let {squares, xIsNext, winner} = current;
+        let { squares, xIsNext, winner } = current;
         const position = i;
 
-        if (winner.name || squares[i]) 
+        if (winner || squares[i].value)
             return;
-        const newSquares = squares.slice();
+
+        let tmp = JSON.stringify(squares)
+        const newSquares = JSON.parse(tmp)
 
         newSquares[i] = xIsNext
-            ? "X"
-            : "O";
+            ? { value: "X" }
+            : { value: "O" };
+        newSquares[i].direction = null;
+
         let newWinner = calculateWinner(newSquares);
 
         this.setState({
@@ -52,7 +64,7 @@ class Game extends React.Component {
             .state
             .history
             .slice(0, move + 1);
-        this.setState({history: history});
+        this.setState({ history: history });
     }
 
     reverse() {
@@ -66,10 +78,10 @@ class Game extends React.Component {
         const history = this.state.history;
         const current = history[history.length - 1];
         let reverse = this.state.reverse;
+        const winner = this.state.winner
         const moves = history.map((step, move) => {
-            const y = step.position % 3;
-            const x = (step.position - y) / 3;
-
+            const y = step.position % this.props.length;
+            const x = (step.position - y) / this.props.length;
             const desc = move
                 ? `${step.xIsNext
                     ? "O"
@@ -77,40 +89,49 @@ class Game extends React.Component {
                 : `Go to game start`;
 
             return (
-                <div key={move}>
+                <li key={move}>
                     <button onClick={() => this.jumpTo(move)}>{desc}</button>
-                </div>
+                </li>
             );
         });
 
-        if (reverse) 
-            moves.reverse();
+        if (reverse) moves.reverse();
         reverse = reverse
             ? "升序"
             : "降序";
+
+        const status = winner
+            ? winner === "Tie"
+                ? "Tie"
+                : "Winner: " + winner
+            : "Next player: " + (
+                this.props.xIsNext
+                    ? "X"
+                    : "O"
+            );
 
         return (
             <div className="game">
                 <div className="game-board">
                     <Board
-                        winner={current.winner}
                         squares={current.squares}
-                        xIsNext={current.xIsNext}
-                        onClick={this
-                            .handleClick
-                            .bind(this)}/>
+                        length={this.props.length}
+                        onClick={this.handleClick.bind(this)}
+                    />
                 </div>
                 <div className="game-info">
+                    <div className="game-status">{status}</div>
                     <div>
                         <button onClick={() => this.reverse()}>{reverse}</button>
                     </div>
-                    <div>{moves}</div>
+                    <ol>{moves}</ol>
                 </div>
             </div>
         );
     }
 }
 
+// 有副作用，会修改squares中的值
 function calculateWinner(squares) {
     const lines = [
         [
@@ -138,38 +159,27 @@ function calculateWinner(squares) {
             2, 4, 6
         ]
     ];
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return {
-                name: squares[a],
-                indices: [
-                    a, b, c
-                ],
-                direction: i < 3
-                    ? "direction1"
-                    : i < 6
-                        ? "direction2"
-                        : i === 6
-                            ? "direction3"
-                            : "direction4"
-            };
-        }
-    }
+    const real = squares.map((square) => square.value)
+    let winner = null
 
-    return squares.some((value) => {
-        return !value;
-    })
-        ? {
-            name: undefined,
-            indices: undefined,
-            direction: undefined
+    let isSome = lines.some(([a, b, c], index) => {
+        if (real[a] && real[a] === real[b] && real[a] === real[c]) {
+            squares[a].direction = squares[b].direction = squares[c].direction = index < 3
+                ? "direction1"
+                : index < 6
+                    ? "direction2"
+                    : index === 6
+                        ? "direction3"
+                        : "direction4"
+            winner = real[a]
+            return true
         }
-        : {
-            name: "Tie",
-            indices: undefined,
-            direction: undefined
-        };
+        return false
+    })
+
+    if (isSome) return winner
+    if (real.every((value) => value != null)) return "Tie"
+    return null
 }
 
 export default Game

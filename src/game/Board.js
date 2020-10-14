@@ -1,41 +1,38 @@
 import React from "react";
+import PropTypes from "prop-types"
 import Row from './Row'
 
 class Board extends React.Component {
+    static propTypes = {
+        length: PropTypes.number.isRequired,
+        squares: PropTypes.array.isRequired,
+        onClick: PropTypes.func.isRequired
+    }
+
     handleClick(index) {
         if (this.props.onClick) {
             this.props.onClick(index)
         }
     }
 
+    genHandleClick(begin) {
+        return index => this.handleClick(begin + index)
+    }
+
     render() {
-        const winner = this.props.winner;
-
-        const status = winner.name
-            ? winner.name === "Tie"
-                ? "Tie"
-                : "Winner: " + winner.name
-            : "Next player: " + (
-                this.props.xIsNext
-                    ? "X"
-                    : "O"
-            );
-
-        const map = Array(3)
+        const map = Array(this.props.length)
             .fill(null)
-            .map((value, index) => {
+            .map((_, index) => {
                 return <Row
                     key={index}
-                    begin={index * 3}
-                    number={3}
-                    squares={this.props.squares}
-                    onClick={this.handleClick.bind(this)}
-                    winner={this.props.winner} />;
+                    number={this.props.length}
+                    squares={this.props.squares.slice(index * this.props.length, (index + 1) * this.props.length)}
+                    onClick={this.genHandleClick(index * this.props.length).bind(this)}
+                />;
             });
 
         return (
             <div>
-                <div className="status">{status}</div>
                 {map}
             </div>
         );

@@ -1,41 +1,35 @@
 import React from "react";
+import PropTypes from "prop-types"
 import Square from "./Square";
 
 class Row extends React.Component {
+    static propTypes = {
+        onClick: PropTypes.func.isRequired,
+        squares: PropTypes.array.isRequired,
+    }
+
     handleClick(index) {
         if (this.props.onClick) {
             this.props.onClick(index)
         }
     }
 
-    renderSquare(i) {
-        let direction = null
-        if (this.props.winner.indices && this.props.winner.indices.some((x) => x === i)) {
-            direction = this.props.winner.direction
-        }
-
-        return (
-            <Square
-                key={i}
-                index={i}
-                value={this
-                    .props
-                    .squares[i]}
-                onClick={this.handleClick.bind(this)}
-                direction={direction}/>
-        );
-    }
-
     render() {
-        const begin = this.props.begin;
         const number = this.props.number;
-        const row = Array(number)
-            .fill(null)
-            .map((value, index) => this.renderSquare(begin + index));
-
-        return (<div className="board-row">
-            {row}
-        </div>);
+        return (
+            <div className="board-row">
+                {
+                    Array(number).fill(null).map((_, index) =>
+                        <Square
+                            key={index}
+                            index={index}
+                            square={this.props.squares[index]}
+                            onClick={this.handleClick.bind(this)}
+                        />
+                    )
+                }
+            </div>
+        );
     }
 }
 

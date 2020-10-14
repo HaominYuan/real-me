@@ -12,7 +12,6 @@ class Index extends Component {
         return (
             <div className='index'>
                 {this.props.children}
-
             </div>
         )
     }
@@ -20,7 +19,7 @@ class Index extends Component {
 
 ReactDOM.render(<Index>
     <Clock />
-    <Game />
+    <Game length={3}/>
     <CommentApp />
 </Index>, document.getElementById("root"))
 
