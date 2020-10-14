@@ -158,8 +158,6 @@ class Game extends React.Component {
             );
         });
 
-        console.log(moves)
-
         if (reverse) 
             moves.reverse();
         reverse = reverse

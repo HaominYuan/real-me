@@ -1,16 +1,18 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from 'prop-types'
 import "./comment.scss"
 
 
 class Comment extends Component {
     static propTypes = {
-        comment: PropTypes.object.isRequired
+        comment: PropTypes.object.isRequired,
+        onDeleteComment: PropTypes.func,
+        index: PropTypes.number
     }
 
     constructor() {
         super()
-        this.state = { timeString: ''}
+        this.state = { timeString: '' }
     }
 
     componentWillMount() {
@@ -21,9 +23,9 @@ class Comment extends Component {
         )
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         clearInterval(this._timer)
-      }
+    }
 
     _updateTimeString() {
         const comment = this.props.comment
@@ -33,6 +35,12 @@ class Comment extends Component {
                 ? `${Math.round(duration / 60)} 分钟前`
                 : `${Math.round(Math.max(duration, 1))} 秒前`
         })
+    }
+
+    handleDeleteComment() {
+        if (this.props.onDeleteComment) {
+            this.props.onDeleteComment(this.props.index)
+        }
     }
 
     render() {
@@ -46,7 +54,9 @@ class Comment extends Component {
                 <span className='comment-createdtime'>
                     {this.state.timeString}
                 </span>
-                <span className='comment-delete'>
+                <span 
+                    onClick={this.handleDeleteComment.bind(this)}
+                    className='comment-delete'>
                     删除
                 </span>
             </div>
