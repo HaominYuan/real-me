@@ -22,4 +22,3 @@ ReactDOM.render(<Index>
     <Game length={3}/>
     <CommentApp />
 </Index>, document.getElementById("root"))
-
