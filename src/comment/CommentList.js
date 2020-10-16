@@ -6,7 +6,7 @@ import "./comment.scss"
 class CommentList extends Component {
     static propTypes = {
         comments: PropTypes.array,
-        onDeleteComment: PropTypes.func
+        onDeleteComment: PropTypes.func.isRequired
     }
 
     static defaultProps = {

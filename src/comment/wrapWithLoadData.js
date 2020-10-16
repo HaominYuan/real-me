@@ -11,9 +11,8 @@ export default (WrappedComoponent, name) => {
 
         componentWillMount() {
             let data = localStorage.getItem(name)
-            console.log(data)
             try {
-                this.setState({ data: JSON.parse(data) })
+                this.setState({ data: JSON.parse(data) || [] })
             } catch (e) {
                 this.setState({ data })
             }
