@@ -1,15 +1,15 @@
 $font-stack: Helvetica, sans-serif;
 $primary-color: rgb(208, 245, 245);
-$font-color: #FFCCCC;
+$font-color: #ffcccc;
 
 html, body, #root {
-    margin: 0;
-    padding: 0;
-    background-color: $primary-color;
+  margin: 0;
+  padding: 0;
+  background-color: $primary-color;
 }
 
 .index {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
