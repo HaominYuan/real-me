@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-// import PropTypes from "prop-types"
 import CommentApp from "./comment/CommentApp";
 import Game from "./game/Game";
 import Clock from "./clock/Clock";

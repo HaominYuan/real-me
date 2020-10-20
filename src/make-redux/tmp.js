@@ -1,78 +1,89 @@
-let appState = {
-  title: {
-    text: 'React.js 小书'
-  },
-  content: {
-    text: 'React.js 小书内容',
-    color: 'blue'
-  }
+// 这份练习需要在 ./public/index.html 文件中修改<body>标签。
+// 需要在<body> 标签下添加如下两行代码
+// <div id='title'></div>
+// <div id='content'></div>
+
+function createStore(reducer) {
+    let state = null
+    const listeners = []
+    const subscribe = (listener) => listeners.push(listener)
+    const getState = () => state
+    const dispatch = (action) => {
+        state = reducer(state, action)
+        listeners.forEach((listener) => listener())
+    }
+    dispatch({})
+    return { getState, dispatch, subscribe }
 }
 
-function createStore(state, stateChanger) {
-  const listeners = []
-  const subscribe = (listener) => listeners.push(listener)
-  const getState = () => state
-  const dispatch = (action) => {
-    state = stateChanger(state, action)
-    listeners.forEach((listener) => listener())
-  }
-  return { getState, dispatch, subscribe }
-}
-
-function stateChanger(state, action) {
-  switch (action.type) {
-    case 'UPDATE_TITLE_TEXT':
-      return {
-        ...state,
+function reducer(state, action) {
+    if (!state) return {
         title: {
-          ...state.title,
-          text: action.text
+            text: 'React.js 小书',
+            color: 'red'
+        },
+        content: {
+            text: 'React.js 小书',
+            color: 'blue'
         }
-      }
-    case 'UPDATE_TITLE_COLOR':
-      return {
-        ...state,
-        title: {
-          ...state.title,
-          color: action.color
-        }
-      }
-    default:
-      return state
-  }
+    }
+    
+    switch (action.type) {
+        case 'UPDATE_TITLE_TEXT':
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    text: action.text
+                }
+            }
+        case 'UPDATE_TITLE_COLOR':
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    color: action.color
+                }
+            }
+        default:
+            return state
+    }
 }
 
 function renderApp(newAppState, oldAppState = {}) {
-  if (newAppState === oldAppState) return
-  console.log('render app...')
-  renderTitle(newAppState.title, oldAppState.title)
-  renderContent(newAppState.content, oldAppState.content)
+    if (newAppState === oldAppState) return
+    console.log('render app...')
+    renderTitle(newAppState.title, oldAppState.title)
+    renderContent(newAppState.content, oldAppState.content)
 }
 
-function renderTitle (newTitle, oldTitle = {}) {
-  if (newTitle === oldTitle) return
-  console.log('render title...')
-  const titleDOM = document.getElementById('title')
-  titleDOM.innerHTML = newTitle.text
-  titleDOM.style.color = newTitle.color
+function renderTitle(newTitle, oldTitle = {}) {
+    if (newTitle === oldTitle) return
+    console.log('render title...')
+    const titleDOM = document.getElementById('title')
+    titleDOM.innerHTML = newTitle.text
+    titleDOM.style.color = newTitle.color
 }
 
-function renderContent (newContent, oldContent = {}) {
-  if (newContent === oldContent) return
-  console.log('render content...')
-  const contentDOM = document.getElementById('content')
-  contentDOM.innerHTML = newContent.text
-  contentDOM.style.color = newContent.color
+function renderContent(newContent, oldContent = {}) {
+    if (newContent === oldContent) return
+    console.log('render content...')
+    const contentDOM = document.getElementById('content')
+    contentDOM.innerHTML = newContent.text
+    contentDOM.style.color = newContent.color
 }
 
-const store = createStore(appState, stateChanger)
+const store = createStore(reducer)
 let oldState = store.getState()
 store.subscribe(() => {
-  const newState = store.getState()
-  renderApp(store.getState(), oldState)
-  oldState = newState
+    const newState = store.getState()
+    renderApp(store.getState(), oldState)
+    oldState = newState
 })
 
-renderApp(store.getState())
-store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' })
-store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'green' })
+
+export default function () {
+    renderApp(store.getState())
+    store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' })
+    store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'green' })
+}
