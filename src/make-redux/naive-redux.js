@@ -19,11 +19,11 @@ function createStore(reducer) {
 function reducer(state, action) {
     if (!state) return {
         title: {
-            text: 'React.js 小书',
+            text: 'naive react-redux',
             color: 'red'
         },
         content: {
-            text: 'React.js 小书',
+            text: 'Go Go Go',
             color: 'blue'
         }
     }
