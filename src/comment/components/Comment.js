@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./comment.scss";
+import "../comment.scss"
 
 class Comment extends Component {
   static propTypes = {

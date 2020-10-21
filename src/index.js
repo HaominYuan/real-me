@@ -1,8 +1,7 @@
 // eslint-disable-next-line
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types'
-import CommentApp from "./comment/CommentApp";
+import CommentApp from "./comment/containers/CommentApp";
 import Game from "./game/Game";
 import Clock from "./clock/Clock";
 import Example from './make-redux/Example'
@@ -15,9 +14,6 @@ class Index extends Component {
   }
 }
 
-
-
-
 ReactDOM.render(
   <Index>
     <Clock />
@@ -27,3 +23,5 @@ ReactDOM.render(
   </Index>,
   document.getElementById("root")
 );
+
+console.log({...null})

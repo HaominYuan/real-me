@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 
 export class Provider extends Component {
     static propTypes = {
-        children: PropsTypes.object,
-        children: PropsTypes.any
+        children: PropsTypes.any,
     }
 
     static childContextTypes = {
