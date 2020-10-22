@@ -17,7 +17,6 @@ export default class CommentApp extends Component {
           <CommentList />
         </div>
       </Provider>
-
     )
   }
 }
