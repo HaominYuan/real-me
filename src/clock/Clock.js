@@ -10,7 +10,7 @@ class Clock extends Component {
     }
 
     _getRandom() {
-        return Math.floor(Math.random()*255)
+        return Math.floor(Math.random() * 255)
     }
 
     getRGB() {
@@ -19,7 +19,7 @@ class Clock extends Component {
 
     componentWillMount() {
         this.timer = setInterval(() => {
-            this.setState({ 
+            this.setState({
                 data: new Date(),
                 color: this.getRGB()
             })
@@ -29,7 +29,7 @@ class Clock extends Component {
     render() {
         return (
             <div>
-                <h1 style={{color: this.state.color}}>
+                <h1 style={{ color: this.state.color }}>
                     <p >现在的时间是</p>
                     {this.state.data.toLocaleTimeString()}
                 </h1>
