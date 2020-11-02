@@ -1,110 +1,106 @@
-$primay-color: rgba(250, 250, 250, 0.2);
-$borderweight: 0;
 
-.wrapper {
-  flex-basis: 500px;
-  font-size: 14px;
-  background-color: $primay-color;
-  border: $borderweight;
+.comment-app {
+  flex: 0 0 500px;
   padding: 20px;
+  background-color: hsla(0, 0%, 98%, 0.4);
+  border-radius: 10px;
 }
 
-/* 评论框样式 */
 .comment-input {
-  background-color: #fff;
-  border: 1px solid #f1f1f1;
-  padding: 20px;
-  margin-bottom: 10px;
+  padding-bottom: 20px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgb(192, 236, 236);
 }
-.comment-field {
+
+.comment-input .comment-field {
   margin-bottom: 15px;
   display: flex;
 }
-.comment-field .comment-field-name {
-  display: flex;
-  flex-basis: 100px;
-  font-size: 14px;
+
+.comment-field-name {
+  flex: 0 0 100px;
+  height: 16px;
+  line-height: 16px;
+  padding-top: 6px;
 }
-.comment-field .comment-field-input {
+
+.comment-field-input {
+  flex: 1 0 200px;
   display: flex;
-  flex: 1;
 }
+
 .comment-field-input input,
 .comment-field-input textarea {
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  padding: 5px;
-  outline: none;
-  font-size: 14px;
   resize: none;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  padding: 5px;
   flex: 1;
+  background-color: transparent;
+  font-size: 16px;
+  font-family: "微软雅黑";
+  color: #00a3cf;
 }
+
 .comment-field-input textarea {
   height: 100px;
 }
+
 .comment-field-button {
   display: flex;
   justify-content: flex-end;
 }
+
 .comment-field-button button {
-  padding: 5px 10px;
   width: 80px;
   border: none;
-  border-radius: 3px;
   background-color: #00a3cf;
-  color: #fff;
   outline: none;
+  color: white;
+  border-radius: 3px;
   cursor: pointer;
+  padding: 5px 10px;
 }
+
 .comment-field-button button:active {
   background: #13c1f1;
 }
-/* 评论列表样式 */
-.comment-list {
-  background-color: #fff;
-  border: 1px solid #f1f1f1;
-  padding: 20px;
-}
-/* 评论组件样式 */
+
+/* commentlist css */
 .comment {
   position: relative;
-  display: flex;
-  border-bottom: 1px solid #f1f1f1;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  min-height: 50px;
+  padding: 5px 0px;
+  border-bottom: 1px solid rgb(192, 236, 236);
 }
-.comment .comment-user {
-  flex-shrink: 0;
-}
+
 .comment-username {
-  color: #00a3cf;
-  font-style: italic;
+  padding-bottom: 3px;
+  color: rgb(247, 184, 184);
+  font-size: 14px;
 }
-.comment-createdtime {
-  padding-right: 5px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 5px;
-  font-size: 12px;
+
+.comment-content {
+  font-size: 16px;
 }
-.comment:hover .comment-delete {
-  color: #00a3cf;
+
+.comment-meta {
+  margin-top: 4px;
+  font-size: 10px;
+  color: rgb(231, 189, 110);
+  display: flex;
+  justify-content: flex-end;
 }
+
 .comment-delete {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 4px;
+  font-size: 10px;
   color: transparent;
-  font-size: 12px;
   cursor: pointer;
 }
-.comment p {
-  margin: 0;
-}
-code {
-  border: 1px solid #ccc;
-  background: #f9f9f9;
-  padding: 0 2px;
+
+.comment-delete:hover {
+  color: rgb(243, 116, 116);
 }
