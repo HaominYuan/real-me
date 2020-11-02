@@ -44,7 +44,7 @@ class Comment extends Component {
     const { comment } = this.props;
     return (
       <div className="comment">
-        <div className="comment-user">
+        <div className="comment-username">
           <span>{comment.username} </span>：
         </div>
         <p>{comment.content}</p>

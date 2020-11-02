@@ -6,7 +6,7 @@
     position: relative;
     transform: rotate(-45deg);
     animation-name: beat;
-    animation-duration: 1s;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
 }
 
@@ -55,6 +55,6 @@
 
 @keyframes revolve {
     50% {
-        transform: rotate(10deg)
+        transform: rotate(10deg);
     }
 }
