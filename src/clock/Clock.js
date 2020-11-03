@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 
 class Clock extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             data: new Date(),
             color: this.getRGB()

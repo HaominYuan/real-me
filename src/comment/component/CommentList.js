@@ -13,7 +13,7 @@ export default class CommentList extends Component {
         })
 
         return (
-            <div>
+            <div className="comment-list">
                 {list}
             </div>
         )

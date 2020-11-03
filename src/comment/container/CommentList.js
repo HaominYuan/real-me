@@ -5,8 +5,7 @@ import { deleteComment, initComments } from "../reducer/comment"
 
 
 class CommentListContainer extends Component {
-    constructor(props) {
-        super(props)
+    componentDidMount() {
         this.props.initComments(this._loadComments())
     }
 
@@ -51,6 +50,5 @@ const mapDispToProps = (dispatch) => {
         }
     }
 }
-
 
 export default connect(mapStateToProps, mapDispToProps)(CommentListContainer)

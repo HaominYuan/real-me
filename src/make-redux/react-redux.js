@@ -7,8 +7,8 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
             store: PropTypes.object
         }
 
-        constructor() {
-            super()
+        constructor(props) {
+            super(props)
             this.state = { allProps: {} }
         }
 
