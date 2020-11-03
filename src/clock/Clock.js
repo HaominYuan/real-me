@@ -17,7 +17,7 @@ class Clock extends Component {
         return `rgb(${this._getRandom()}, ${this._getRandom()}, ${this._getRandom()})`
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.timer = setInterval(() => {
             this.setState({
                 data: new Date(),
@@ -25,7 +25,7 @@ class Clock extends Component {
             })
         }, 1000)
     }
-
+    
     render() {
         return (
             <div>

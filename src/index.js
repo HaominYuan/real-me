@@ -30,8 +30,5 @@ ReactDOM.render(
       <Moon />
     </Index>
   </Provider>
-  ,
-  document.getElementById("root")
+  ,document.getElementById("root")
 );
-
-console.log({ ...null })

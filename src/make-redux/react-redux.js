@@ -12,7 +12,7 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
             this.state = { allProps: {} }
         }
 
-        componentWillMount() {
+        componentDidMount() {
             const { store } = this.context
             this._updateProps()
             store.subscribe(() => this._updateProps())

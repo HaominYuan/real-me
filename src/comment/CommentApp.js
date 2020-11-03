@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CommentInput from './container/CommentInputContainer'
-import CommentList from './container/CommentListContainer'
+import CommentInput from './container/CommentInput'
+import CommentList from './container/CommentList'
 import "./comment.scss"
 
 export default class CommentApp extends Component {
