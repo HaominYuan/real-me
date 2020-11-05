@@ -9,7 +9,7 @@ export default class CommentList extends Component {
 
     render() {
         const list = this.props.comments.map((comment, index) => {
-            return <Comment key={index} index={index} comment={comment} onDeleteComment={this.handleDeleteComment.bind(this)}/>
+            return <Comment key={comment.createdtime} index={index} comment={comment} onDeleteComment={this.handleDeleteComment.bind(this)}/>
         })
 
         return (

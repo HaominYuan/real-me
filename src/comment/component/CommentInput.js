@@ -40,6 +40,9 @@ export default class CommentInput extends Component {
             content: this.state.content,
             createdtime: new Date().getTime()
         })
+        this.setState({
+            content: ""
+        })
     }
 
     render() {
