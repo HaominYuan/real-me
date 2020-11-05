@@ -16,6 +16,10 @@ export default class CommentInput extends Component {
         }
     }
 
+    componentDidMount() {
+        this.textarea.focus()
+    }
+
     handleContentChange(event) {
         this.setState({
             content: event.target.value
@@ -64,6 +68,7 @@ export default class CommentInput extends Component {
                         <textarea
                             value={this.state.content}
                             onChange={this.handleContentChange.bind(this)}
+                            ref={(textarea) => this.textarea = textarea}
                         ></textarea>
                     </div>
                 </div>
