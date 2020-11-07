@@ -26,8 +26,8 @@ class CommentInputContainer extends Component {
 
     onSubmitComment(comment) {
         if (!comment) return
-        if (!comment.username) alert("请输入用户名")
-        if (!comment.content) alert("请输入评论内容")
+        if (!comment.username) return alert("请输入用户名")
+        if (!comment.content) return alert("请输入评论内容")
 
         const { comments } = this.props
         const newComments = [...comments, comment]

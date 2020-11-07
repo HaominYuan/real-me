@@ -3,11 +3,14 @@
   flex-basis: 300px;
   display: flex;
   padding: 20px;
+
+
+  .game-board {
+    flex: 0 0 150px;
+  }
 }
 
-.game-board {
-  flex: 0 0 150px;
-}
+
 
 .game-info {
   flex: 0 0 200px;
