@@ -17,10 +17,10 @@ class Square extends Component {
 
     return (
       <button
-        className={`square${direction ? ` winner ${direction}` : ''}`}
+        className={`square${direction ? ` ${direction}` : ''}`}
         onClick={this.handleClick}
       >
-        {value}
+        {value ? value : "\u00a0"}
       </button>
     );
   }

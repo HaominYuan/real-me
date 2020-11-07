@@ -1,3 +1,9 @@
+$line-color: rgb(255, 204, 204);
+$border-color: rgb(153, 153, 153);
+$background-color: rgb(255, 255, 204);
+$font-color: rgb(0, 163, 207);
+$winner-background-color: rgb(208, 245, 245);
+
 .game {
   height: 40%;
   flex-basis: 300px;
@@ -6,104 +12,83 @@
 
   .board {
     flex: 0 0 150px;
-    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+
+    .square {
+      border: 1px solid $border-color;
+      font-size: 24px;
+      line-height: 34px;
+      height: 34px;
+      width: 34px;
+      margin-right: -1px;
+      margin-top: -1px;
+    }
+
+    .direction1 {
+      background: $winner-background-color
+        linear-gradient(
+          transparent 0%,
+          transparent calc(50% - 2px),
+          $line-color 50%,
+          transparent calc(50% + 2px),
+          transparent 100%
+        );
+    }
+    
+    .direction2 {
+      background: $winner-background-color
+        linear-gradient(
+          to right,
+          transparent 0%,
+          transparent calc(50% - 2px),
+          $line-color 50%,
+          transparent calc(50% + 2px),
+          transparent 100%
+        );
+    }
+    
+    .direction3 {
+      background: $winner-background-color
+        linear-gradient(
+          to bottom left,
+          transparent 0%,
+          transparent calc(50% - 2px),
+          $line-color 50%,
+          transparent calc(50% + 2px),
+          transparent 100%
+        );
+    }
+    
+    .direction4 {
+      background: $winner-background-color
+        linear-gradient(
+          to bottom right,
+          transparent 0%,
+          transparent calc(50% - 2px),
+          $line-color 50%,
+          transparent calc(50% + 2px),
+          transparent 100%
+        );
+    }
   }
 
   .info {
     flex: 0 0 200px;
-    background-color: green;
+
+    .status {
+      margin-bottom: 10px;
+    }
   }
 
   button {
-    background-color: #ffffcc;
-    border: 1px solid #999;
+    background-color: $background-color;
+    border: 1px solid $border-color;
     color: #3399cc;
+
+    &:focus {
+      outline: none;
+    }
   }
-  
-  button:focus {
-    outline: none;
-  }
+
 }
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.game-status {
-  margin-bottom: 10px;
-}
-
-.square {
-  color: #ffcccc;
-  background-color: #ffffcc;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
-}
-
-.square:focus {
-  outline: none;
-}
-
-.winner {
-  color: red;
-}
-
-.direction1 {
-  background: #ccffff
-    linear-gradient(
-      transparent 0%,
-      transparent calc(50% - 1px),
-      #1069b2 50%,
-      transparent calc(50% + 1px),
-      transparent 100%
-    );
-}
-
-.direction2 {
-  background: #ccffff
-    linear-gradient(
-      to right,
-      transparent 0%,
-      transparent calc(50% - 1px),
-      #1069b2 50%,
-      transparent calc(50% + 1px),
-      transparent 100%
-    );
-}
-
-.direction3 {
-  background: #ccffff
-    linear-gradient(
-      to bottom left,
-      transparent 0%,
-      transparent calc(50% - 1px),
-      #1069b2 50%,
-      transparent calc(50% + 1px),
-      transparent 100%
-    );
-}
-
-.direction4 {
-  background: #ccffff
-    linear-gradient(
-      to bottom right,
-      transparent 0%,
-      transparent calc(50% - 1px),
-      #1069b2 50%,
-      transparent calc(50% + 1px),
-      transparent 100%
-    );
-}
-
-

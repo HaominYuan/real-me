@@ -7,7 +7,7 @@ class Row extends React.Component {
         onClick: PropTypes.func.isRequired,
         squares: PropTypes.array.isRequired,
     };
-
+        
     handleClick = (index) => {
         if (this.props.onClick) {
             this.props.onClick(index);
@@ -17,7 +17,7 @@ class Row extends React.Component {
     render() {
         const number = this.props.number;
         return (
-            <div className="board-row">
+            <div className="row">
                 {Array(number)
                     .fill(null)
                     .map((_, index) => (

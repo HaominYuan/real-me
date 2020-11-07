@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Game from "./game/Game";
-import Clock from "./clock/Clock";
-import Example from './make-redux/Example'
+import Clock from "./decorate/Clock";
 import "./index.scss";
 import Heart from "./decorate/Heart";
 import Moon from "./decorate/Moon";
@@ -25,7 +24,6 @@ ReactDOM.render(
       <Clock />
       <Game length={3} />
       <CommentApp />
-      <Example />
       <Heart />
       <Moon />
     </Index>
