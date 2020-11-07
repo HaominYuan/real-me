@@ -5,12 +5,11 @@ class Square extends Component {
   static propTypes = {
     square: PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
-  };
-
-  handleClick() {
-    if (this.props.onClick) {
-      this.props.onClick(this.props.index);
-    }
+  }
+  
+  handleClick = () => {
+    if (!this.props.onClick) return
+    this.props.onClick(this.props.index);
   }
 
   render() {
@@ -18,8 +17,8 @@ class Square extends Component {
 
     return (
       <button
-        className={`square ${direction ? `winner ${direction}` : null}`}
-        onClick={this.handleClick.bind(this)}
+        className={`square${direction ? ` winner ${direction}` : ''}`}
+        onClick={this.handleClick}
       >
         {value}
       </button>

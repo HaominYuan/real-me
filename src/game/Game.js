@@ -1,17 +1,17 @@
 import React from "react";
-import Board from './Board'
-import PropTypes from "prop-types"
-import "./game.scss"
-
+import Board from "./Board";
+import PropTypes from "prop-types";
+import "./game.scss";
+import Info from "./Info";
 
 class Game extends React.Component {
     static propTypes = {
-        length: PropTypes.number.isRequired
-    }
+        length: PropTypes.number.isRequired,
+    };
 
     static defaultProps = {
-        length: 3
-    }
+        length: 3,
+    };
 
     constructor(props) {
         super(props);
@@ -21,28 +21,25 @@ class Game extends React.Component {
                     squares: Array(Math.pow(this.props.length, 2)).fill({}),
                     xIsNext: false,
                     winner: null,
-                    position: null
-                }
+                    position: null,
+                },
             ],
-            reverse: false
+            reverse: false,
         };
     }
 
-    handleClick(i) {
+    handleClick = (i) => {
         const history = this.state.history;
         const current = history[history.length - 1];
         let { squares, xIsNext, winner } = current;
         const position = i;
 
-        if (winner || squares[i].value)
-            return;
+        if (winner || squares[i].value) return;
 
-        let tmp = JSON.stringify(squares)
-        const newSquares = JSON.parse(tmp)
+        let tmp = JSON.stringify(squares);
+        const newSquares = JSON.parse(tmp);
 
-        newSquares[i] = xIsNext
-            ? { value: "X" }
-            : { value: "O" };
+        newSquares[i] = xIsNext ? { value: "X" } : { value: "O" };
         newSquares[i].direction = null;
 
         let newWinner = calculateWinner(newSquares);
@@ -53,80 +50,33 @@ class Game extends React.Component {
                     squares: newSquares,
                     xIsNext: !xIsNext,
                     winner: newWinner,
-                    position
-                }
-            ])
+                    position,
+                },
+            ]),
         });
     }
 
-    jumpTo(move) {
-        const history = this
-            .state
-            .history
-            .slice(0, move + 1);
+    jumpTo = (move) => {
+        const history = this.state.history.slice(0, move + 1);
         this.setState({ history: history });
-    }
-
-    reverse() {
-        const reverse = this.state.reverse;
-        this.setState({
-            reverse: !reverse
-        });
     }
 
     render() {
         const history = this.state.history;
         const current = history[history.length - 1];
-        let reverse = this.state.reverse;
-        const winner = this.state.winner
-        const moves = history.map((step, move) => {
-            const y = step.position % this.props.length;
-            const x = (step.position - y) / this.props.length;
-            const desc = move
-                ? `${step.xIsNext
-                    ? "O"
-                    : "X"} go to move # (${x}, ${y})`
-                : `Go to game start`;
-
-            return (
-                <li key={move}>
-                    <button className="" onClick={() => this.jumpTo(move)}>{desc}</button>
-                </li>
-            );
-        });
-
-        if (reverse) moves.reverse();
-        reverse = reverse
-            ? "升序"
-            : "降序";
-
-        const status = winner
-            ? winner === "Tie"
-                ? "Tie"
-                : "Winner: " + winner
-            : "Next player: " + (
-                this.props.xIsNext
-                    ? "X"
-                    : "O"
-            );
 
         return (
+
             <div className="game">
-                <div className="game-board">
-                    <Board
-                        squares={current.squares}
-                        length={this.props.length}
-                        onClick={this.handleClick.bind(this)}
-                    />
-                </div>
-                <div className="game-info">
-                    <div className="game-status">{status}</div>
-                    <div>
-                        <button onClick={() => this.reverse()}>{reverse}</button>
-                    </div>
-                    <ol>{moves}</ol>
-                </div>
+                <Board
+                    squares={current.squares}
+                    length={this.props.length}
+                    onClick={this.handleClick}
+                />
+
+                <Info winner={this.state.winner} history={history} onJumpTo={this.jumpTo} />
             </div>
+
         );
     }
 }
@@ -134,52 +84,37 @@ class Game extends React.Component {
 // 有副作用，会修改squares中的值
 function calculateWinner(squares) {
     const lines = [
-        [
-            0, 1, 2
-        ],
-        [
-            3, 4, 5
-        ],
-        [
-            6, 7, 8
-        ],
-        [
-            0, 3, 6
-        ],
-        [
-            1, 4, 7
-        ],
-        [
-            2, 5, 8
-        ],
-        [
-            0, 4, 8
-        ],
-        [
-            2, 4, 6
-        ]
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
     ];
-    const real = squares.map((square) => square.value)
-    let winner = null
+    const real = squares.map((square) => square.value);
+    let winner = null;
 
     let isSome = lines.some(([a, b, c], index) => {
         if (real[a] && real[a] === real[b] && real[a] === real[c]) {
-            squares[a].direction = squares[b].direction = squares[c].direction = index < 3
-                ? "direction1"
-                : index < 6
-                    ? "direction2"
-                    : index === 6
-                        ? "direction3"
-                        : "direction4"
-            winner = real[a]
-            return true
+            squares[a].direction = squares[b].direction = squares[c].direction =
+                index < 3
+                    ? "direction1"
+                    : index < 6
+                        ? "direction2"
+                        : index === 6
+                            ? "direction3"
+                            : "direction4";
+            winner = real[a];
+            return true;
         }
-        return false
-    })
+        return false;
+    });
 
-    if (isSome) return winner
-    if (real.every((value) => value != null)) return "Tie"
-    return null
+    if (isSome) return winner;
+    if (real.every((value) => value != null)) return "Tie";
+    return null;
 }
 
-export default Game
+export default Game;

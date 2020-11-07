@@ -1,0 +1,73 @@
+<canvas id="gc" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        canv = document.getElementById("gc")
+        ctx = canv.getContext("2d")
+        document.addEventListener("keydown", keyPush)
+        setInterval(game, 1000)
+    }
+
+    let px = py = 10
+    let gs = tc = 20
+    let ax = ay = 15
+    let xv = yv = 0
+    let trail = []
+    let tail = 5
+
+    function game() {
+        px += xv
+        py += yv
+
+        px = px < 0 ? tc - 1 : px
+        px = px > tc - 1 ? 0 : px
+        py = py < 0 ? tc - 1 : py   
+        py = py > tc - 1 ? 0 : py
+
+        ctx.fillStyle = "black"
+        ctx.fillRect(0, 0, canv.width, canv.height)
+
+
+        ctx.fillStyle = "lime"
+        for (let i = 0; i < trail.length; i++) {
+            ctx.fillRect(trail[i].x * gs, trail[i].y * gs, gs - 2, gs - 2)
+            if (trail[i].x == px && trail[i].y == py) {
+                tail = i + 1
+            }
+        }
+
+        trail.push({ x: px, y: py })
+        while (trail.length > tail) trail.shift()
+
+        if (ax == px && ay == py) {
+            tail++
+            ax = Math.floor(Math.random() * tc)
+            ay = Math.floor(Math.random() * tc)
+        }
+        console.log(trail)
+
+        ctx.fillStyle = "red"
+        ctx.fillRect(ax * gs, ay * gs, gs - 2, gs - 2)
+    }
+
+    function keyPush(event) {
+        switch (event.keyCode) {
+            case 37:
+                xv = -1
+                yv = 0
+                break
+            case 38:
+                xv = 0
+                yv = -1
+                break
+            case 39:
+                xv = 1
+                yv = 0
+                break
+            case 40:
+                xv = 0
+                yv = 1
+                break
+        }
+    }
+</script>
