@@ -13,20 +13,41 @@ import { createStore } from "redux";
 const commentStore = createStore(commentReducer)
 
 class Index extends Component {
-  render() {
-    return <div className="index">{this.props.children}</div>;
-  }
+    render() {
+        const left = this.props.children.slice(1)
+        const right = this.props.children[0]
+        return (
+            <div className="index">
+                <div className='left'>
+                    {left}
+                </div>
+                <div className='right'>
+                    {right}
+                </div>
+            </div>
+        )
+    }
 }
 
 ReactDOM.render(
-  <Provider store={commentStore}>
-    <Index>
-      <Clock />
-      <Game length={3} />
-      <CommentApp />
-      <Heart />
-      <Moon />
-    </Index>
-  </Provider>
-  ,document.getElementById("root")
+    <Provider store={commentStore}>
+        <Index>
+            <CommentApp />
+            <Clock />
+            <Heart />
+            <Moon />
+            <Clock />
+            <Heart />
+            <Moon />
+            <Clock />
+            <Heart />
+            <Moon />
+            <Clock />
+            <Heart />
+            <Moon />
+            <Game length={3} />
+ 
+        </Index>
+    </Provider>
+    , document.getElementById("root")
 );

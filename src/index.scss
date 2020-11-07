@@ -6,13 +6,23 @@ html, body, #root {
   padding: 0;
   background-color: $primary-color;
   color: $font-color;
-  overflow-y: overlay;
 
   .index {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding-left: calc(100vw - 100%);
+    align-items: flex-start;
+
+    .left {
+      display: flex;  
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .right {
+      display: flex;
+      flex: 0 0 30%;
+      justify-content: center;
+    }
   }
 }
-
