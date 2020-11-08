@@ -5,90 +5,89 @@ $font-color: rgb(0, 163, 207);
 $winner-background-color: rgb(208, 245, 245);
 
 .game {
-  height: 40%;
-  flex-basis: 300px;
-  display: flex;
-  padding: 20px;
-
-  .board {
-    flex: 0 0 150px;
+    height: 40%;
+    flex-basis: 300px;
     display: flex;
-    flex-direction: column;
-
-    .square {
-      border: 1px solid $border-color;
-      font-size: 24px;
-      line-height: 34px;
-      height: 34px;
-      width: 34px;
-      margin-right: -1px;
-      margin-top: -1px;
+    padding: 20px;
+    
+    .board {
+        flex: 0 0 150px;
+        display: flex;
+        flex-direction: column;
+        
+        .square {
+            border: 1px solid $border-color;
+            font-size: 24px;
+            line-height: 34px;
+            height: 34px;
+            width: 34px;
+            margin-right: -1px;
+            margin-top: -1px;
+        }
+        
+        .direction1 {
+            background: $winner-background-color
+            
+            linear-gradient(
+                transparent 0%,
+                transparent calc(50% - 2px),
+                $line-color 50%,
+                transparent calc(50% + 2px),
+                transparent 100%
+            );
     }
+        .direction2 {
+            background: $winner-background-color
+            linear-gradient(
+                to right,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                $line-color 50%,
+                transparent calc(50% + 2px),
+                transparent 100%
+            );
+        }
 
-    .direction1 {
-      background: $winner-background-color
-        linear-gradient(
-          transparent 0%,
-          transparent calc(50% - 2px),
-          $line-color 50%,
-          transparent calc(50% + 2px),
-          transparent 100%
+        .direction3 {
+            background: $winner-background-color
+            linear-gradient(
+            to bottom left,
+            transparent 0%,
+            transparent calc(50% - 2px),
+            $line-color 50%,
+            transparent calc(50% + 2px),
+            transparent 100%
         );
     }
     
-    .direction2 {
-      background: $winner-background-color
-        linear-gradient(
-          to right,
-          transparent 0%,
-          transparent calc(50% - 2px),
-          $line-color 50%,
-          transparent calc(50% + 2px),
-          transparent 100%
-        );
+        .direction4 {
+        background: $winner-background-color
+            linear-gradient(
+            to bottom right,
+            transparent 0%,
+            transparent calc(50% - 2px),
+            $line-color 50%,
+            transparent calc(50% + 2px),
+            transparent 100%
+            );
+        }
     }
     
-    .direction3 {
-      background: $winner-background-color
-        linear-gradient(
-          to bottom left,
-          transparent 0%,
-          transparent calc(50% - 2px),
-          $line-color 50%,
-          transparent calc(50% + 2px),
-          transparent 100%
-        );
+    .info {
+        flex: 0 0 200px;
+        
+        .status {
+            margin-bottom: 10px;
+        }
     }
     
-    .direction4 {
-      background: $winner-background-color
-        linear-gradient(
-          to bottom right,
-          transparent 0%,
-          transparent calc(50% - 2px),
-          $line-color 50%,
-          transparent calc(50% + 2px),
-          transparent 100%
-        );
+    button {
+        background-color: $background-color;
+        border: 1px solid $border-color;
+        color: #3399cc;
+        
+        &:focus {
+            outline: none;
+        }
     }
-  }
-
-  .info {
-    flex: 0 0 200px;
-
-    .status {
-      margin-bottom: 10px;
-    }
-  }
-
-  button {
-    background-color: $background-color;
-    border: 1px solid $border-color;
-    color: #3399cc;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
 }

@@ -2,27 +2,27 @@ $primary-color: rgb(208, 245, 245);
 $font-color: rgb(0, 164, 209);
 
 html, body, #root {
-  margin: 0;
-  padding: 0;
-  background-color: $primary-color;
-  color: $font-color;
-
-  .index {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-
-    .left {
-      display: flex;  
-      justify-content: space-evenly;
-      flex-wrap: wrap;
-      flex: 1;
+    margin: 0;
+    padding: 0;
+    background-color: $primary-color;
+    color: $font-color;
+    
+    .index {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        
+        .left {
+            display: flex;  
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        
+        .right {
+            display: flex;
+            flex: 0 0 30%;
+            justify-content: center;
+        }
     }
-
-    .right {
-      display: flex;
-      flex: 0 0 30%;
-      justify-content: center;
-    }
-  }
 }

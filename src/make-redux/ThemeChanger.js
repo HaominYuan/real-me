@@ -1,6 +1,6 @@
 import { Provider } from "./components/Provider";
 import React, { Component } from "react";
-import Header from "./containers//Header"
+import Header from "./containers/Header"
 import Content from "./containers/Content"
 
 function createStore(reducer) {
@@ -30,7 +30,7 @@ const themeReducer = (state, action) => {
 
 const store = createStore(themeReducer)
 
-class Example extends Component {
+class ThemeChanger extends Component {
     render() {
         return (
             <Provider store={store}>
@@ -41,4 +41,4 @@ class Example extends Component {
     }
 }
 
-export default Example;
+export default ThemeChanger;

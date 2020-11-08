@@ -46,7 +46,6 @@ ReactDOM.render(
             <Heart />
             <Moon />
             <Game length={3} />
- 
         </Index>
     </Provider>
     , document.getElementById("root")
