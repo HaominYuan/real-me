@@ -1,45 +1,47 @@
-import React, { Component } from "react"
+import React, { useEffect, useState } from "react"
 
-class Clock extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: new Date(),
-            color: this.getRGB()
-        }
-    }
-
-    _getRandom() {
+function useColor() {
+    const _getRandom = () => {
         return Math.floor(Math.random() * 255)
     }
 
-    getRGB() {
-        return `rgb(${this._getRandom()}, ${this._getRandom()}, ${this._getRandom()})`
+    const getRGB = () => {
+        return `rgb(${_getRandom()}, ${_getRandom()}, ${_getRandom()})`
     }
 
-    componentDidMount() {
-        this.timer = setInterval(() => {
-            this.setState({
-                data: new Date(),
-                color: this.getRGB()
-            })
+    const [color, setColor] = useState(getRGB())
+
+    const _setColor = () => {
+        setColor(getRGB())
+    }
+
+    return [color, _setColor]
+}
+
+
+function Clock() {
+    const [date, setDate] = useState(new Date())
+    const [color, setColor] = useColor()
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setDate(new Date())
+            setColor()
         }, 1000)
-    }
-    
-    render() {
-        return (
-            <div>
-                <h1 style={{ color: this.state.color }}>
-                    <p >现在的时间是</p>
-                    {this.state.data.toLocaleTimeString()}
-                </h1>
-            </div>
-        )
-    }
 
-    componentWillUnmount() {
-        clearInterval(this.timer)
-    }
+        return () => {
+            clearInterval(timer)
+        }
+    })
+
+    return (
+        <div>
+            <h1 style={{ color: color }}>
+                <p >现在的时间是</p>
+                {date.toLocaleTimeString()}
+            </h1>
+        </div>
+    )
 }
 
 export default Clock;
