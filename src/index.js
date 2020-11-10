@@ -9,6 +9,7 @@ import CommentApp from "./comment/CommentApp";
 import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
+import Example from "./hook/Hook";
 
 const commentStore = createStore(commentReducer)
 
@@ -33,6 +34,7 @@ ReactDOM.render(
     <Provider store={commentStore}>
         <Index>
             <CommentApp />
+            <Example />
             <Clock />
             <Heart />
             <Moon />

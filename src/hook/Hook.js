@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from 'react'
-import Clock from '../decorate/Clock'
+import React, { useEffect, useReducer, useContext } from 'react'
 
 
 const EDispatch = React.createContext(null)
@@ -24,44 +23,20 @@ function Button(props) {
     )
 }
 
-// function Example() {
-//     const [state, dispatch] = useReducer(reducer, initialState)
+function Example() {
+    const [state, dispatch] = useReducer(reducer, initialState)
 
 
-//     useEffect(() => {
-//         document.title = state.color
-//     })
+    useEffect(() => {
+        document.title = state.color
+    }, [state.color])
 
-
-//     return (
-//         <EDispatch.Provider value={dispatch}>
-//             <Button color={state.color} name="blue"/>
-//             <Button color={state.color} name="yellow"/>
-//         </EDispatch.Provider>
-//     )
-// }
-
-
-class Example extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isShow: true
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                {this.state.isShow ? <Clock /> : null}
-                <button onClick={() => this.setState({isShow: !this.state.isShow})}>
-                    click
-                </button>
-            </div>
-        )
-    }
+    return (
+        <EDispatch.Provider value={dispatch}>
+            <Button color={state.color} name="blue"/>
+            <Button color={state.color} name="yellow"/>
+        </EDispatch.Provider>
+    )
 }
-
-
 
 export default Example
