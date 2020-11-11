@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useContext } from 'react'
 
-
 const EDispatch = React.createContext(null)
 const initialState = {color: 'red'}
 
@@ -23,9 +22,8 @@ function Button(props) {
     )
 }
 
-function Example() {
+function Example(props) {
     const [state, dispatch] = useReducer(reducer, initialState)
-
 
     useEffect(() => {
         document.title = state.color

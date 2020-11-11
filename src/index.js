@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import Game from "./game/Game";
+import Tic from "./tic/Tic";
 import Clock from "./decorate/Clock";
 import "./index.scss";
 import Heart from "./decorate/Heart";
@@ -9,46 +9,49 @@ import CommentApp from "./comment/CommentApp";
 import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
-import Example from "./hook/Hook";
+import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 
 const commentStore = createStore(commentReducer)
 
-class Index extends Component {
-    render() {
-        const left = this.props.children.slice(1)
-        const right = this.props.children[0]
-        return (
-            <div className="index">
-                <div className='left'>
-                    {left}
+
+const Home = () => <h1>Real Me</h1>
+
+
+function App() {
+    return (
+        <Provider store={commentStore} >
+            <Router className="home-page">
+                <header>
+
+                    <div className="center">
+                        <nav>
+                            <Link to="/">Home</Link>
+                            <Link to="/clock">Clock</Link>
+                            <Link to="/heart">Heart</Link>
+                            <Link to="/moon">Moon</Link>
+                            <Link to="/comment-app">CommentApp</Link>
+                            <Link to="/tic-tac-toe">Tic-Tac-Toe</Link>
+                        </nav>
+                    </div>
+                </header>
+
+                <div className="content">
+                    <Route exact path="/" component={Home} />
+                    <Route path="/clock" component={Clock} />
+                    <Route path="/heart" component={Heart} />
+                    <Route path="/moon" component={Moon} />
+                    <Route path="/comment-app" component={CommentApp} />
+                    <Route path="/tic-tac-toe" component={Tic} />
                 </div>
-                <div className='right'>
-                    {right}
-                </div>
-            </div>
-        )
-    }
+
+            </Router>
+        </Provider>
+    )
 }
 
 ReactDOM.render(
-    <Provider store={commentStore}>
-        <Index>
-            <CommentApp />
-            <Example />
-            <Clock />
-            <Heart />
-            <Moon />
-            <Clock />
-            <Heart />
-            <Moon />
-            <Clock />
-            <Heart />
-            <Moon />
-            <Clock />
-            <Heart />
-            <Moon />
-            <Game length={3} />
-        </Index>
+    <Provider store={commentStore} >
+        <App />
     </Provider>
     , document.getElementById("root")
 );

@@ -13,7 +13,7 @@ export default function(state, action) {
             }
         case ADD:
             return {
-                comments: [...state.comments, action.comment]
+                comments: [action.comment, ...state.comments]
             }
         case DELETE:
             return {

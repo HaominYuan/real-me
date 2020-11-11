@@ -1,10 +1,10 @@
 import React from "react";
 import Board from "./Board";
 import PropTypes from "prop-types";
-import "./game.scss";
+import "./tic.scss";
 import Info from "./Info";
 
-class Game extends React.Component {
+class Tic extends React.Component {
     static propTypes = {
         length: PropTypes.number.isRequired,
     };
@@ -117,4 +117,4 @@ function calculateWinner(squares) {
     return null;
 }
 
-export default Game;
+export default Tic;
