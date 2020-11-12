@@ -29,8 +29,8 @@ function App() {
                             <Link to="/clock">Clock</Link>
                             <Link to="/heart">Heart</Link>
                             <Link to="/moon">Moon</Link>
-                            <Link to="/comment-app">CommentApp</Link>
                             <Link to="/tic-tac-toe">Tic-Tac-Toe</Link>
+                            <Link to="/comment-app">CommentApp</Link>
                         </nav>
                     </div>
                 </header>
@@ -40,8 +40,8 @@ function App() {
                     <Route path="/clock" component={Clock} />
                     <Route path="/heart" component={Heart} />
                     <Route path="/moon" component={Moon} />
-                    <Route path="/comment-app" component={CommentApp} />
                     <Route path="/tic-tac-toe" component={Tic} />
+                    <Route path="/comment-app" component={CommentApp} />
                 </div>
 
             </Router>

@@ -18,6 +18,9 @@ body,
     background-color: $header-color;
     color: white;
     width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
 
     .center {
       width: 90%;
@@ -27,12 +30,14 @@ body,
     }
 
     @media screen and (max-width: 1000px) {
-        background-color: green;
+        display: none;
     }
 
     a {
       color: white;
       padding: 0 20px;
+      font-size: 18px;
+      font-weight: 300;
     }
   }
 
