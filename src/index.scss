@@ -30,6 +30,7 @@ body,
       nav {
         display: flex;
         height: 60px;
+        overflow: hidden;
       }
     }
 
@@ -41,18 +42,25 @@ body,
       color: white;
       padding: 0 20px;
       font-size: 18px;
-      font-weight: 300;
+      font-weight: 400;
       text-decoration: none;
       height: 100%;
       display: flex;
       align-items: center;
+      flex-shrink: 0;
 
-      border-bottom: 4px solid black;
+      border-bottom: 3px solid black;
+      transition: all 0.2s;
+
+      &:hover {
+          color: $font-color;
+      }
     }
 
     .active {
-        border-bottom: 4px solid rgb(0, 164, 209);;
-      }
+        border-bottom: 3px solid $font-color;
+        color: $font-color;
+    }
   }
 
   .content {
