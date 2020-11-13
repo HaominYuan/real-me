@@ -9,7 +9,7 @@ import CommentApp from "./comment/CommentApp";
 import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
-import { Link, BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 const commentStore = createStore(commentReducer)
 
@@ -22,15 +22,14 @@ function App() {
         <Provider store={commentStore} >
             <Router className="home-page">
                 <header>
-
                     <div className="center">
                         <nav>
-                            <Link to="/">Home</Link>
-                            <Link to="/clock">Clock</Link>
-                            <Link to="/heart">Heart</Link>
-                            <Link to="/moon">Moon</Link>
-                            <Link to="/tic-tac-toe">Tic-Tac-Toe</Link>
-                            <Link to="/comment-app">CommentApp</Link>
+                            <NavLink exact activeClassName="active" className="link" to="/">Home</NavLink>
+                            <NavLink exact activeClassName="active" className="link" to="/clock">Clock</NavLink>
+                            <NavLink exact activeClassName="active" className="link" to="/heart">Heart</NavLink>
+                            <NavLink exact activeClassName="active" className="link" to="/moon">Moon</NavLink>
+                            <NavLink exact activeClassName="active" className="link" to="/tic-tac-toe">Tic-Tac-Toe</NavLink>
+                            <NavLink exact activeClassName="active" className="link" to="/comment-app">CommentApp</NavLink>
                         </nav>
                     </div>
                 </header>
