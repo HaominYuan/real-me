@@ -34,10 +34,6 @@ body,
             }
         }
         
-        @media screen and (max-width: 1000px) {
-            // display: none;
-        }
-        
         .link {
             color: white;
             padding: 0 20px;
@@ -54,7 +50,7 @@ body,
             &:hover {
                 color: $font-color;
                 background-color: rgb(51, 50, 50);
-                border-bottom-color: $font-color;
+                border-bottom-color: rgb(51, 50, 50);
             }
         }
         
@@ -62,6 +58,10 @@ body,
             border-bottom-color: $font-color;
             color: $font-color;
             transition: all 0.1s;
+
+            &:hover {
+                border-bottom-color: $font-color;
+            }
         }
     }
     
