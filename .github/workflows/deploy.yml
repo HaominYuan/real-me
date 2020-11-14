@@ -3,8 +3,8 @@ name: Blog CI/CD
 on:
   push:
     branches:
-      - master   # Ö»ÔÚ master ÉÏ push ´¥·¢²¿Êð
-    paths-ignore:  # ÏÂÁÐÎÄ¼þµÄ±ä¸ü²»´¥·¢²¿Êð£¬¿ÉÒÔ×ÔÐÐÌí¼Ó
+      - master   # Ö»ï¿½ï¿½ master ï¿½ï¿½ push ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    paths-ignore:  # ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ð£¬¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
       - README.md
       - LICENSE
 
@@ -17,7 +17,7 @@ jobs:
       matrix:
               node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2 # µÚÒ»²½£¬¼ì³ö²Ö¿â¸±±¾
+    - uses: actions/checkout@v2 # ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿â¸±ï¿½ï¿½
     
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -36,7 +36,7 @@ jobs:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         ARGS: -avz --delete --exclude='*.pyc'
         SERVER_PORT: '22'
-        FOLDER: ./build/*
+        FOLDER: /opt/docker_nginx/build/*
         SERVER_IP: ${{ secrets.SSH_HOST }}
         USERNAME: ${{ secrets.SSH_USERNAME }}
         SERVER_DESTINATION: /root/build/
