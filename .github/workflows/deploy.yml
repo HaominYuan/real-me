@@ -36,7 +36,7 @@ jobs:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         ARGS: -avz --delete --exclude='*.pyc'
         SERVER_PORT: '22'
-        FOLDER: /opt/docker_nginx/build/*
+        FOLDER: ./build/*
         SERVER_IP: ${{ secrets.SSH_HOST }}
         USERNAME: ${{ secrets.SSH_USERNAME }}
-        SERVER_DESTINATION: /root/build/
+        SERVER_DESTINATION: /opt/docker_nginx/build
