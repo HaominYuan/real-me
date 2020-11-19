@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Tic from "./tic/Tic";
 import Clock from "./decorate/Clock";
@@ -10,11 +10,24 @@ import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import axios from "axios";
 
 const commentStore = createStore(commentReducer)
 
+const Home = () => {
+    const [title, setTitle] = useState("Real Me")
 
-const Home = () => <h1>Real Me</h1>
+    useEffect(() => {
+        (async () => {
+          const result = await axios(
+            'https://tstxxy.icu/hello',
+          );
+          setTitle(result.data)
+        })();
+      }, []);
+
+    return <h1>{title}</h1>
+}
 
 
 function App() {
