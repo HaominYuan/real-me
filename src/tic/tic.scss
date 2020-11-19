@@ -24,7 +24,7 @@ $winner-background-color: rgb(208, 245, 245);
             margin-right: -1px;
             margin-top: -1px;
         }
-        
+
         .direction1 {
             background: $winner-background-color
             
@@ -78,6 +78,13 @@ $winner-background-color: rgb(208, 245, 245);
         
         .status {
             margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px;
+            // outline: none;
+            border: 1;
+            margin: 4px;
         }
     }
     
