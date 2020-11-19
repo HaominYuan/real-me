@@ -20,7 +20,7 @@ const Home = () => {
     useEffect(() => {
         (async () => {
           const result = await axios(
-            'https://tstxxy.icu/hello',
+            'https://tstxxy.icu/api/hello',
           );
           setTitle(result.data)
         })();
