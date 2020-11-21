@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Tic from "./tic/Tic";
 import Clock from "./decorate/Clock";
@@ -10,26 +10,10 @@ import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import axios from "axios";
+import Home from './Home';
+import Article from './Article'
 
 const commentStore = createStore(commentReducer)
-
-const Home = () => {
-    const [title, setTitle] = useState("Real Me")
-
-    useEffect(() => {
-        (async () => {
-          const result = await axios(
-            // 'https://tstxxy.icu/api/hello',
-            'https://42.194.215.137/api/hello'
-          );
-          setTitle(result.data)
-        })();
-      }, []);
-
-    return <h1>{title}</h1>
-}
-
 
 function App() {
     return (
@@ -39,6 +23,7 @@ function App() {
                     <div className="center">
                         <nav>
                             <NavLink exact activeClassName="active" className="link" to="/">Home</NavLink>
+                            <NavLink exact activeClassName="active" className="link" to="/article">Article</NavLink>
                             <NavLink exact activeClassName="active" className="link" to="/clock">Clock</NavLink>
                             <NavLink exact activeClassName="active" className="link" to="/heart">Heart</NavLink>
                             <NavLink exact activeClassName="active" className="link" to="/moon">Moon</NavLink>
@@ -54,9 +39,9 @@ function App() {
                     <Route path="/heart" component={Heart} />
                     <Route path="/moon" component={Moon} />
                     <Route path="/tic-tac-toe" component={Tic} />
+                    <Route path="/article" component={Article} />
                     <Route path="/comment-app" component={CommentApp} />
                 </div>
-
             </Router>
         </Provider>
     )
