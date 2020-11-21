@@ -3,8 +3,8 @@ name: Blog CI/CD
 on:
   push:
     branches:
-      - master   # ֻ�� master �� push ��������
-    paths-ignore:  # �����ļ��ı�����������𣬿�����������
+      - master
+    paths-ignore:  
       - README.md
       - LICENSE
 
@@ -17,7 +17,7 @@ jobs:
       matrix:
               node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2 # ��һ��������ֿ⸱��
+    - uses: actions/checkout@v2
     
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
