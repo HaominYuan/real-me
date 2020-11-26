@@ -1,9 +1,6 @@
 import React from 'react'
 import "./decorate.scss"
 
-const Moon = () => {
+export default () => {
     return <div className='moon'></div>
 }
-
-
-export default Moon

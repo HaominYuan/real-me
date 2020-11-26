@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
 
-
-// const URI = 'https://42.194.215.137/api/'
 // const URI = 'https://tstxxy.icu/api/',
-const URI = 'http://localhost/'
+// const URI = 'http://localhost/'
+const URI = 'https://42.194.215.137/api/'
 
-const Home = () => {
+export default () => {
     const [title, setTitle] = useState("Real Me")
 
     useEffect(() => {
@@ -19,5 +18,3 @@ const Home = () => {
       }, []);
     return <h1>{title}</h1>
 }
-
-export default Home

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-function useColor() {
+const useColor = () => {
     const _getRandom = () => {
         return Math.floor(Math.random() * 255)
     }
@@ -19,7 +19,7 @@ function useColor() {
 }
 
 
-function Clock() {
+export default () => {
     const [date, setDate] = useState(new Date())
     const [color, setColor] = useColor()
 
@@ -35,13 +35,8 @@ function Clock() {
     })
 
     return (
-        <div>
-            <h1 style={{ color: color }}>
-                <p >现在的时间是</p>
-                {date.toLocaleTimeString()}
-            </h1>
-        </div>
+        <span style={{ color: color }} className="clock">
+            {date.toLocaleTimeString()}
+        </span>
     )
 }
-
-export default Clock;

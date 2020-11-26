@@ -3,8 +3,7 @@ import { createEditor } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 
 
-const Article = () => {
-
+export default () => {
     const editor = useMemo(() => withReact(createEditor()), [])
     const [value, setValue] = useState([
         {
@@ -12,12 +11,9 @@ const Article = () => {
             children: [{ text: 'A line of text in a paragraph.'}]
         }
     ])
-
     return (
         <Slate editor={editor} value={value} onChange={newValue => setValue(newValue)}>
             <Editable />
         </Slate>
     )
 }
-
-export default Article

@@ -48,13 +48,27 @@
     margin: 50px;
     box-shadow: -26px -7px 0px 0px rgb(234,229,223);
     animation-name: revolve;
-    animation-duration: 3s;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
+    animation-timing-function: linear;
 
     @keyframes revolve {
+        25% {
+            transform: rotate(20deg);
+        }
+
         50% {
-            transform: rotate(10deg);
+            transform: rotate(0deg);
+        }
+
+        75% {
+            transform: rotate(-20deg);
         }
     }
 }
 
+.clock {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
