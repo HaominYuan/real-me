@@ -8,7 +8,7 @@ import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Home from './Home';
-import Article from './Article'
+import Article from './article/Article'
 import Decorate from "./decorate/Decorate";
 
 const commentStore = createStore(commentReducer)

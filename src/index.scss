@@ -10,7 +10,7 @@ body,
     background-color: $primary-color;
     color: $font-color;
     box-sizing: border-box;
-    user-select:none;
+    user-select: none;
 
     header {
         position: fixed;
@@ -21,20 +21,19 @@ body,
         width: 100vw;
         display: flex;
         align-items: center;
-        
+
         .center {
             width: 90%;
             margin: 0 auto;
             display: flex;
             justify-content: space-around;
-        
-        
+
             nav {
-                display: flex;   
+                display: flex;
                 height: 60px;
             }
         }
-        
+
         .link {
             color: white;
             padding: 0 20px;
@@ -48,25 +47,26 @@ body,
             transition: all 0.1s;
             flex-shrink: 0;
 
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 color: $font-color;
                 background-color: rgb(51, 50, 50);
                 border-bottom-color: rgb(51, 50, 50);
                 outline: none;
             }
         }
-        
+
         .active {
             border-bottom-color: $font-color;
             color: $font-color;
             transition: all 0.1s;
 
             &:hover {
-                border-bottom-color: $font-color;
+                border-bottom-color: $font-color; 
             }
         }
     }
-    
+
     .content {
         margin-top: 100px;
         display: flex;
@@ -78,9 +78,9 @@ body,
 *,
 ::before,
 ::after {
-  box-sizing: inherit;
-  padding: 0;
-  margin: 0;
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
 }
 
 html {
