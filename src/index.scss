@@ -1,78 +1,18 @@
 $primary-color: rgb(208, 245, 245);
 $font-color: rgb(0, 164, 209);
 $header-color: rgb(0, 0, 0);
+@import "~antd/dist/antd.css";
 
-html,
-body,
-#root {
-    margin: 0;
-    padding: 0;
-    background-color: $primary-color;
-    color: $font-color;
-    box-sizing: border-box;
-    user-select: none;
+html {
+    overflow-x: hidden;
+    width: 100vw;
+    user-select:none;
+}
 
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: $header-color;
-        color: white;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-
-        .center {
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-
-            nav {
-                display: flex;
-                height: 60px;
-            }
-        }
-
-        .link {
-            color: white;
-            padding: 0 20px;
-            font-size: 18px;
-            font-weight: 300;
-            text-decoration: none;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            border-bottom: 4px solid black;
-            transition: all 0.1s;
-            flex-shrink: 0;
-
-            &:hover,
-            &:focus {
-                color: $font-color;
-                background-color: rgb(51, 50, 50);
-                border-bottom-color: rgb(51, 50, 50);
-                outline: none;
-            }
-        }
-
-        .active {
-            border-bottom-color: $font-color;
-            color: $font-color;
-            transition: all 0.1s;
-
-            &:hover {
-                border-bottom-color: $font-color; 
-            }
-        }
-    }
-
-    .content {
-        margin-top: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-    }
+.content {
+    display: flex;
+    justify-content: center;
+    background: white;
 }
 
 *,
@@ -83,7 +23,20 @@ body,
     margin: 0;
 }
 
-html {
-    overflow-x: hidden;
-    width: 100vw;
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+#components-layout-demo-top .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-row-rtl #components-layout-demo-top .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
 }

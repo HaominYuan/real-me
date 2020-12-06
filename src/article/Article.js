@@ -98,7 +98,7 @@ export default () => {
 
     return (
         <div className='article'>
-            <div className='header'>
+            <div className='top'>
                 <i onClick={hanldeBoldClick} className={"material-icons icon " + (isBold ? "icon-on" : null)}>format_bold</i>
                 <i onClick={handleCodeClick} className={"material-icons icon " + (isCode ? "icon-on" : null)}>code</i>
             </div>
@@ -142,16 +142,17 @@ export default () => {
 }
 
 
+
+const DefaultElement = props => {
+    return <p {...props.attributes}>{props.children}</p>
+}
+
 const CodeElement = props => {
     return (
         <pre {...props.attributes}>
             <strong>{props.children}</strong>
         </pre>
     )
-}
-
-const DefaultElement = props => {
-    return <p {...props.attributes}>{props.children}</p>
 }
 
 const Leaf = props => {

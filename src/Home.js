@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
 
-// const URI = 'https://tstxxy.icu/api/',
-// const URI = 'http://localhost/'
 const URI = 'https://42.194.215.137/api/'
 
 export default () => {
