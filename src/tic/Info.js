@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Moves from "./Moves";
+import style from "./tic.module.scss";
 
 const Info = props => {
     const [reverse, setReverse] = useState(false)
@@ -23,8 +24,8 @@ const Info = props => {
         : "Next player: " + (current.xIsNext ? "X" : "O");
 
     return (
-        <div className="info">
-            <div className="game-status">{status}</div>
+        <div className={style.info}>
+            <div className={style.status}>{status}</div>
             <button onClick={handleClick}>{reverse ? "降序" : "升序"}</button>
             <Moves reverse={reverse} history={props.history} handleJumpTo={handleJumpTo}/>
         </div>

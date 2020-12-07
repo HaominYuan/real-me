@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import style from "./decorate.module.scss"
 
 const useColor = () => {
     const _getRandom = () => {
@@ -35,7 +36,7 @@ export default () => {
     })
 
     return (
-        <span style={{ color: color }} className="clock">
+        <span style={{ color: color }} className={style.clock}>
             {date.toLocaleTimeString()}
         </span>
     )

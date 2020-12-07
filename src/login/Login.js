@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
-import './login.scss'
+import style from './login.module.scss'
 import { useHistory } from 'react-router-dom';
 
 const layout = {
@@ -40,7 +40,7 @@ export default () => {
     };
 
     return (
-        <div className="Login">
+        <div className={style.login}>
             <Form
                 {...layout}
                 name="basic"

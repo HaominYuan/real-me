@@ -1,8 +1,8 @@
 .heart {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: pink;
-    margin: 50px;
+    margin: 70px;
     position: relative;
     transform: rotate(-45deg);
     animation-name: beat;
@@ -15,16 +15,16 @@
         }
         
         50% {
-            transform: scale(0.6) rotate(-45deg);
+            transform: scale(0.7) rotate(-45deg);
         }
     }
 
     &::before {
         content: '';
         position: absolute;
-        width: 100px;
-        height: 100px;
-        top: -50px;
+        width: 80px;
+        height: 80px;
+        top: -40px;
         background-color: pink;
         border-radius: 50%;
     }
@@ -32,9 +32,9 @@
     &::after {
         content: '';
         position: absolute;
-        width: 100px;
-        height: 100px;
-        left: 50px;
+        width: 80px;
+        height: 80px;
+        left: 40px;
         background-color: pink;
         border-radius: 50%;
     }
@@ -46,7 +46,7 @@
     background-color: transparent;
     border-radius: 50%;
     margin: 50px;
-    box-shadow: -26px -7px 0px 0px rgb(234,229,223);
+    box-shadow: -26px -7px 0px 0px rgb(255,239,97);
     animation-name: revolve;
     animation-duration: 5s;
     animation-iteration-count: infinite;

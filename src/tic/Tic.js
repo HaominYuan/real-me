@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Board from "./Board";
-import "./tic.scss";
+import style from "./tic.module.scss";
 import Info from "./Info";
 
 const Tic = props => {
@@ -39,7 +39,7 @@ const Tic = props => {
     const current = history[history.length - 1];
 
     return (
-        <div className="game">
+        <div className={style.game}>
             <Board
                 squares={current.squares}
                 length={props.length}

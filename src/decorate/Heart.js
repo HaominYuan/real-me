@@ -1,6 +1,6 @@
 import React from 'react'
-import "./decorate.scss"
+import style from "./decorate.module.scss"
 
 export default () => {
-    return <div className='heart'></div>
+    return <div className={style.heart}></div>
 }

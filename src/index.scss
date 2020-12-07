@@ -9,23 +9,15 @@ html {
     user-select:none;
 }
 
+.header {
+    display: flex;
+    justify-content: center;
+}
+
 .content {
     display: flex;
     justify-content: center;
     background: white;
-}
-
-*,
-::before,
-::after {
-    box-sizing: inherit;
-    padding: 0;
-    margin: 0;
-}
-
-.header {
-    display: flex;
-    justify-content: center;
 }
 
 #components-layout-demo-top .logo {

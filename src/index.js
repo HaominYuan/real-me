@@ -13,8 +13,6 @@ import Decorate from "./decorate/Decorate";
 import Login from './login/Login'
 import { Layout, Menu } from 'antd';
 const { Header, Content } = Layout;
-
-
 const commentStore = createStore(commentReducer)
 
 const Index = withRouter(({ history }) => {

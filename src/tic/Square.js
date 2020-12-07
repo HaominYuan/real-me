@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./tic.module.scss";
 
 const Square = props => {
     const handleClick = () => {
@@ -10,7 +11,8 @@ const Square = props => {
 
     return (
         <button
-            className={`square${direction ? ` ${direction}` : ''}`}
+            // className={`${style.square}${direction ? ` ${style[direction]}` : ''}`}
+            className={`${style.square} ${style[direction]}`}
             onClick={handleClick}
         >
             {value ? value : "\u00a0"}

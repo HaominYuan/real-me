@@ -1,6 +1,6 @@
 import React from 'react'
-import "./decorate.scss"
+import style from "./decorate.module.scss"
 
 export default () => {
-    return <div className='moon'></div>
+    return <div className={style.moon}></div>
 }

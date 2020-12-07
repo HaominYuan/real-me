@@ -35,7 +35,8 @@ $winner-background-color: rgb(208, 245, 245);
                 transparent calc(50% + 2px),
                 transparent 100%
             );
-    }
+        }
+
         .direction2 {
             background: $winner-background-color
             linear-gradient(
@@ -51,24 +52,24 @@ $winner-background-color: rgb(208, 245, 245);
         .direction3 {
             background: $winner-background-color
             linear-gradient(
-            to bottom left,
-            transparent 0%,
-            transparent calc(50% - 2px),
-            $line-color 50%,
-            transparent calc(50% + 2px),
-            transparent 100%
-        );
-    }
+                to bottom left,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                $line-color 50%,
+                transparent calc(50% + 2px),
+                transparent 100%
+            );
+        }
     
         .direction4 {
-        background: $winner-background-color
+            background: $winner-background-color
             linear-gradient(
-            to bottom right,
-            transparent 0%,
-            transparent calc(50% - 2px),
-            $line-color 50%,
-            transparent calc(50% + 2px),
-            transparent 100%
+                to bottom right,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                $line-color 50%,
+                transparent calc(50% + 2px),
+                transparent 100%
             );
         }
     }
@@ -82,12 +83,12 @@ $winner-background-color: rgb(208, 245, 245);
 
         button {
             padding: 5px;
-            // outline: none;
+            outline: none;
             border: 1;
             margin: 4px;
         }
     }
-    
+
     button {
         background-color: $background-color;
         border: 1px solid $border-color;
@@ -97,4 +98,13 @@ $winner-background-color: rgb(208, 245, 245);
             outline: none;
         }
     }
+
+    *,
+    ::before,
+    ::after {
+        box-sizing: inherit;
+        padding: 0;
+        margin: 0;
+    }
 }
+

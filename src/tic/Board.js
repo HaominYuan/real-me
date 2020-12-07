@@ -1,5 +1,6 @@
 import React from "react";
 import Row from './Row'
+import style from "./tic.module.scss";
 
 const Board = props => {
     const handleClick = index => {
@@ -23,7 +24,7 @@ const Board = props => {
         });
 
     return (
-        <div className="board">
+        <div className={style.board}>
             {map}
         </div>
     );
