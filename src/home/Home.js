@@ -7,12 +7,21 @@ export default () => {
     const [title, setTitle] = useState("Real Me")
 
     useEffect(() => {
+        let didCancel = false;
         (async () => {
-          const result = await axios(
-            URI + "hello",
-          );
-          setTitle(result.data)
+            const result = await axios(
+                URI + "hello",
+            );
+
+            if (didCancel) return
+            setTitle(result.data)
         })();
-      }, []);
+
+        return () => {
+            didCancel = true
+        }
+
+    }, []);
+
     return <h1>{title}</h1>
 }

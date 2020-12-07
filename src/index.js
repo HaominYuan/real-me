@@ -6,7 +6,7 @@ import CommentApp from "./comment/CommentApp";
 import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 import Home from './home/Home';
 import Article from './article/Article'
 import Decorate from "./decorate/Decorate";
@@ -17,41 +17,48 @@ const { Header, Content } = Layout;
 
 const commentStore = createStore(commentReducer)
 
+const Index = withRouter(({ history }) => {
+    return (
+        <Layout>
+            <Header className="header">
+                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/home']} selectedKeys={[history.location.pathname]}>
+                    <Menu.Item key="/home">
+                        <Link to="/home">Home</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/article">
+                        <Link to="/article">Article</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/decorate">
+                        <Link to="/decorate">Decorate</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/tic-tac-toe">
+                        <Link to="/tic-tac-toe">Tic-Tac-Toe</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/commet-app">
+                        <Link to="/commet-app">CommentApp</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/login">
+                        <Link to="/login">Login</Link>
+                    </Menu.Item>
+                </Menu>
+            </Header>
+            <Content className="content">
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/article" component={Article} />
+                <Route exact path="/decorate" component={Decorate} />
+                <Route exact path="/tic-tac-toe" render={() => <Tic length={3} />} />
+                <Route exact path="/commet-app" component={CommentApp} />
+                <Route exact path="/login" component={Login} />
+            </Content>
+        </Layout>
+    )
+})
+
+
 ReactDOM.render(
     <Provider store={commentStore} >
         <Router>
-            <Layout>
-                <Header className="header">
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1">
-                            <Link to="/">Home</Link>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <Link to="/article">Article</Link>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <Link to="/decorate">Decorate</Link>
-                        </Menu.Item>
-                        <Menu.Item key="4">
-                            <Link to="/tic-tac-toe">Tic-Tac-Toe</Link>
-                        </Menu.Item>
-                        <Menu.Item key="5">
-                            <Link to="/commet-app">CommentApp</Link>
-                        </Menu.Item>
-                        <Menu.Item key="6">
-                            <Link to="/login">Login</Link>
-                        </Menu.Item>
-                    </Menu>
-                </Header>
-                <Content className="content">
-                    <Route exact path="/" component={Home} />
-                    <Route path="/article" component={Article} />
-                    <Route path="/decorate" component={Decorate} />
-                    <Route path="/tic-tac-toe" render={() => <Tic length={3}/>}/>
-                    <Route path="/commet-app" component={CommentApp} />
-                    <Route path="/login" component={Login} />
-                </Content>
-            </Layout>
+            <Index />
         </Router>
     </Provider>
     , document.getElementById("root")

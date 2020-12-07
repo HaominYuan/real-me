@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
 import './login.scss'
+import { useHistory } from 'react-router-dom';
 
 const layout = {
     labelCol: {
@@ -10,6 +11,7 @@ const layout = {
         span: 16,
     },
 };
+
 const tailLayout = {
     wrapperCol: {
         offset: 8,
@@ -17,9 +19,20 @@ const tailLayout = {
     },
 };
 
+const user = {
+    username: 'tstxxy',
+    password: 'qwer1234'
+}
+
 export default () => {
+    const history = useHistory()
+
     const onFinish = (values) => {
-        console.log('Success:', values);
+        if (values.username === user.username && values.password === user.password) {
+            history.push('/home')
+        } else {
+            console.log("error")
+        }
     };
 
     const onFinishFailed = (errorInfo) => {
