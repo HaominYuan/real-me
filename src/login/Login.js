@@ -1,5 +1,4 @@
 import React from 'react'
-import { Divider } from "antd";
 import { Form, Input, Button, Checkbox } from 'antd';
 import './login.scss'
 
