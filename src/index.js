@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from './Home';
+import Home from './home/Home';
 import Article from './article/Article'
 import Decorate from "./decorate/Decorate";
 import Login from './login/Login'
@@ -47,7 +47,7 @@ ReactDOM.render(
                     <Route exact path="/" component={Home} />
                     <Route path="/article" component={Article} />
                     <Route path="/decorate" component={Decorate} />
-                    <Route path="/tic-tac-toe" component={Tic} />
+                    <Route path="/tic-tac-toe" render={() => <Tic length={3}/>}/>
                     <Route path="/commet-app" component={CommentApp} />
                     <Route path="/login" component={Login} />
                 </Content>

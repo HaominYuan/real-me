@@ -55,7 +55,7 @@ const ChildUseMemo = (props) => {
         return (
             <div>
                 {props.count}
-            </div>
+            </div>  
         )
     }, [props.count])
 }

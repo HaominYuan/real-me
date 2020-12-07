@@ -1,88 +1,59 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Board from "./Board";
-import PropTypes from "prop-types";
 import "./tic.scss";
 import Info from "./Info";
 
-class Tic extends React.Component {
-    static propTypes = {
-        length: PropTypes.number.isRequired,
-    };
+const Tic = props => {
+    const [history, setHistory] = useState([{
+        squares: Array(Math.pow(props.length, 2)).fill({}),
+        xIsNext: false,
+        winner: null,
+        position: null,
+    }])
 
-    static defaultProps = {
-        length: 3,
-    };
+    const handleClick = useCallback(position => {
+        const current = history[history.length - 1]
+        const { squares, xIsNext, winner } = current;
+        
+        if (winner || squares[position].value) return;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            history: [
-                {
-                    squares: Array(Math.pow(this.props.length, 2)).fill({}),
-                    xIsNext: false,
-                    winner: null,
-                    position: null,
-                },
-            ],
-            reverse: false,
-        };
+        const newSquares = JSON.parse(JSON.stringify(squares));
+        newSquares[position] = xIsNext ? { value: "X" } : { value: "O" };
+
+        const newWinner = calculateWinner(newSquares);
+
+        setHistory(prev => {
+            return prev.concat([{
+                squares: newSquares,
+                xIsNext: !xIsNext,
+                winner: newWinner,
+                position,
+            }])
+        })
+    }, [history])
+
+    const jumpTo = move => {
+        setHistory(history.slice(0, move + 1))
     }
 
-    handleClick = (i) => {
-        const history = this.state.history;
-        const current = history[history.length - 1];
-        let { squares, xIsNext, winner } = current;
-        const position = i;
+    const current = history[history.length - 1];
 
-        if (winner || squares[i].value) return;
+    return (
+        <div className="game">
+            <Board
+                squares={current.squares}
+                length={props.length}
+                onClick={handleClick}
+            />
 
-        let tmp = JSON.stringify(squares);
-        const newSquares = JSON.parse(tmp);
+            <Info winner={current.winner} history={history} onJumpTo={jumpTo} />
+        </div>
 
-        newSquares[i] = xIsNext ? { value: "X" } : { value: "O" };
-        newSquares[i].direction = null;
-
-        let newWinner = calculateWinner(newSquares);
-
-        this.setState({
-            history: history.concat([
-                {
-                    squares: newSquares,
-                    xIsNext: !xIsNext,
-                    winner: newWinner,
-                    position,
-                },
-            ]),
-        });
-    }
-
-    jumpTo = (move) => {
-        const history = this.state.history.slice(0, move + 1);
-        this.setState({ history: history });
-    }
-
-    render() {
-        const history = this.state.history;
-        const current = history[history.length - 1];
-
-        return (
-
-            <div className="game">
-                <Board
-                    squares={current.squares}
-                    length={this.props.length}
-                    onClick={this.handleClick}
-                />
-
-                <Info winner={this.state.winner} history={history} onJumpTo={this.jumpTo} />
-            </div>
-
-        );
-    }
+    );
 }
 
 // 有副作用，会修改squares中的值
-function calculateWinner(squares) {
+const calculateWinner = squares => {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -93,7 +64,7 @@ function calculateWinner(squares) {
         [0, 4, 8],
         [2, 4, 6],
     ];
-    const real = squares.map((square) => square.value);
+    const real = squares.map(square => square.value);
     let winner = null;
 
     let isSome = lines.some(([a, b, c], index) => {

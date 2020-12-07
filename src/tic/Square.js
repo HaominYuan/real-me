@@ -1,29 +1,27 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
-class Square extends Component {
-    static propTypes = {
-        square: PropTypes.object.isRequired,
-        onClick: PropTypes.func.isRequired,
+const Square = props => {
+    const handleClick = () => {
+        if (!props.onClick) return
+        props.onClick(props.index);
     }
 
-    handleClick = () => {
-        if (!this.props.onClick) return
-        this.props.onClick(this.props.index);
-    }
+    const { direction, value } = props.square;
 
-    render() {
-        const { direction, value } = this.props.square;
-
-        return (
-            <button
-                className={`square${direction ? ` ${direction}` : ''}`}
-                onClick={this.handleClick}
-            >
-                {value ? value : "\u00a0"}
-            </button>
-        );
-    }
+    return (
+        <button
+            className={`square${direction ? ` ${direction}` : ''}`}
+            onClick={handleClick}
+        >
+            {value ? value : "\u00a0"}
+        </button>
+    );
 }
 
-export default Square;
+// const isEqual = ({square: psquare}, {square: nsquare} ) => {
+//     const {value: pvalue, direction: pdirection} = psquare
+//     const {value: nvalue, direction: ndirection} = nsquare
+//     return pvalue === nvalue && pdirection === ndirection
+// }
+
+export default React.memo(Square);

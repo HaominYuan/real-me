@@ -1,42 +1,36 @@
 import React from "react";
-import PropTypes from "prop-types"
 import Row from './Row'
 
-class Board extends React.Component {
-    static propTypes = {
-        length: PropTypes.number.isRequired,
-        squares: PropTypes.array.isRequired,
-        onClick: PropTypes.func.isRequired
+const Board = props => {
+    const handleClick = index => {
+        if (!props.onClick) return
+        props.onClick(index)
     }
 
-    handleClick(index) {
-        if (this.props.onClick) {
-            this.props.onClick(index)
-        }
+    const genHandleClick = begin => {
+        return index => handleClick(begin + index)
     }
 
-    genHandleClick(begin) {
-        return index => this.handleClick(begin + index)
-    }
+    const map = Array(props.length)
+        .fill(null)
+        .map((_, index) => {
+            return <Row
+                key={index}
+                number={props.length}
+                squares={props.squares.slice(index * props.length, (index + 1) * props.length)}
+                onClick={genHandleClick(index * props.length)}
+            />;
+        });
 
-    render() {
-        const map = Array(this.props.length)
-            .fill(null)
-            .map((_, index) => {
-                return <Row
-                    key={index}
-                    number={this.props.length}
-                    squares={this.props.squares.slice(index * this.props.length, (index + 1) * this.props.length)}
-                    onClick={this.genHandleClick(index * this.props.length).bind(this)}
-                />;
-            });
-
-        return (
-            <div className="board">
-                {map}
-            </div>
-        );
-    }
+    return (
+        <div className="board">
+            {map}
+        </div>
+    );
 }
 
-export default Board
+const isEqual = (prev, next) => {
+    return prev.onClick === next.onClick
+}
+
+export default React.memo(Board, isEqual)

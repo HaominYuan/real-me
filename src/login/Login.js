@@ -17,10 +17,9 @@ const tailLayout = {
     },
 };
 
-const Demo = () => {
+export default () => {
     const onFinish = (values) => {
         console.log('Success:', values);
-
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -71,19 +70,9 @@ const Demo = () => {
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
                         Submit
-        </Button>
+                    </Button>
                 </Form.Item>
             </Form>
         </div>
-
-
-    );
-};
-
-
-export default () => {
-    return (
-        <Demo />
-        // <Button type="primary">Primary Button</Button>
     );
 };
