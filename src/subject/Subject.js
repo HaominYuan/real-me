@@ -83,7 +83,7 @@ const data = [
 
 export default props => {
 
-    const [visible, setVisible] = useState(false)
+    const [visible] = useState(false)
 
     return (
         <>
