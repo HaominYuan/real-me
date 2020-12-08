@@ -14,7 +14,6 @@ const reducer = (state, action) => {
 
 const Button = props => {
     const dispatch = useContext(EDispatch)
-
     return (
         <button onClick={() => dispatch({type: 'change-color', color: props.name})} style={{'color': props.color}}>
             {props.name}
@@ -22,7 +21,7 @@ const Button = props => {
     )
 }
 
-const Example = () => {
+export default () => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
@@ -36,5 +35,3 @@ const Example = () => {
         </EDispatch.Provider>
     )
 }
-
-export default Example

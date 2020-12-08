@@ -29,7 +29,7 @@ export default () => {
 
     const onFinish = (values) => {
         if (values.username === user.username && values.password === user.password) {
-            history.push('/home')
+            history.push('/subject')
         } else {
             console.log("error")
         }

@@ -11,6 +11,7 @@ import Decorate from "./decorate/Decorate";
 import Login from './login/Login'
 import { Layout, Menu } from 'antd';
 import Example from "./hook/Hook";
+import Subject from "./subject/Subject";
 const { Header, Content } = Layout;
 
 const Index = withRouter(({ history }) => {
@@ -39,6 +40,9 @@ const Index = withRouter(({ history }) => {
                     {/* <Menu.Item key="/example">
                         <Link to="/example">Example</Link>
                     </Menu.Item> */}
+                    <Menu.Item key="/subject">
+                        <Link to="/subject">Subject</Link>
+                    </Menu.Item>
                 </Menu>
             </Header>
             <Content className={style.content}>
@@ -50,6 +54,7 @@ const Index = withRouter(({ history }) => {
                     <Route exact path="/commet-app" component={CommentApp} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/example" component={Example} />
+                    <Route exact path="/subject" component={Subject} />
                     <Redirect exact path="/" to="/home" />
                 </Switch>
 
