@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import style from '../comment.module.scss'
+
 
 export default props => {
     const [username, setUsername] = useState(props.username)
@@ -34,10 +36,10 @@ export default props => {
     }
 
     return (
-        <div className="comment-input">
-            <div className="comment-field">
-                <span className='comment-field-name'>用户名：</span>
-                <div className="comment-field-input">
+        <div className={style.input}>
+            <div className={style.field}>
+                <span className={style.name}>用户名：</span>
+                <div className={style.fieldInput}>
                     <input
                         type="text" value={username}
                         onChange={handleUsernameChange}
@@ -45,9 +47,9 @@ export default props => {
                     />
                 </div>
             </div>
-            <div className="comment-field">
-                <span className='comment-field-name'>评论内容：</span>
-                <div className="comment-field-input">
+            <div className={style.field}>
+                <span className={style.name}>评论内容：</span>
+                <div className={style.fieldInput}>
                     <textarea
                         value={content}
                         onChange={handleContentChange}
@@ -55,7 +57,7 @@ export default props => {
                     ></textarea>
                 </div>
             </div>
-            <div className="comment-field-button">
+            <div className={style.button}>
                 <button type='button' onClick={handleSubmitComment}>发布</button>
             </div>
         </div>

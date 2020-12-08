@@ -1,5 +1,7 @@
 import React from 'react'
 import Comment from './Comment'
+import style from '../comment.module.scss'
+
 
 export default (props) => {
     const handleDeleteComment = (commentIndex) => {
@@ -12,7 +14,7 @@ export default (props) => {
     })
 
     return (
-        <div className="comment-list">
+        <div className={style.list}>
             {list}
         </div>
     )

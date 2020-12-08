@@ -4,17 +4,14 @@ import Tic from "./tic/Tic";
 import style from "./index.module.scss";
 import "./antd.scss"
 import CommentApp from "./comment/CommentApp";
-import { Provider } from 'react-redux'
-import commentReducer from './comment/reducer/comment'
-import { createStore } from "redux";
 import { BrowserRouter as Router, Route, Link, withRouter, Redirect, Switch } from "react-router-dom";
 import Home from './home/Home';
 import Article from './article/Article'
 import Decorate from "./decorate/Decorate";
 import Login from './login/Login'
 import { Layout, Menu } from 'antd';
+import Example from "./hook/Hook";
 const { Header, Content } = Layout;
-const commentStore = createStore(commentReducer)
 
 const Index = withRouter(({ history }) => {
     return (
@@ -39,6 +36,9 @@ const Index = withRouter(({ history }) => {
                     <Menu.Item key="/login">
                         <Link to="/login">Login</Link>
                     </Menu.Item>
+                    {/* <Menu.Item key="/example">
+                        <Link to="/example">Example</Link>
+                    </Menu.Item> */}
                 </Menu>
             </Header>
             <Content className={style.content}>
@@ -49,6 +49,7 @@ const Index = withRouter(({ history }) => {
                     <Route exact path="/tic-tac-toe" render={() => <Tic length={3} />} />
                     <Route exact path="/commet-app" component={CommentApp} />
                     <Route exact path="/login" component={Login} />
+                    <Route exact path="/example" component={Example} />
                     <Redirect exact path="/" to="/home" />
                 </Switch>
 
@@ -59,10 +60,8 @@ const Index = withRouter(({ history }) => {
 
 
 ReactDOM.render(
-    <Provider store={commentStore} >
-        <Router>
-            <Index />
-        </Router>
-    </Provider>
+    <Router>
+        <Index />
+    </Router>
     , document.getElementById("root")
 );

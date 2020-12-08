@@ -2,7 +2,7 @@ const INIT = "INIT"
 const ADD = "ADD"
 const DELETE = "DELETE"
 
-export default function(state, action) {
+export default (state, action) => {
     if (!state) return {
         comments: []
     }

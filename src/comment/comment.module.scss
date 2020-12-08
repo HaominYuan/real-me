@@ -1,4 +1,4 @@
-.comment-app {
+.app {
     flex: 0 0 600px;
     background-color: hsla(0, 0%, 98%, 0.4);
     border-radius: 2%;
@@ -6,31 +6,31 @@
     padding: 2%;
 }
 
-.comment-input {
+.input {
     padding-bottom: 20px;
     margin-bottom: 5px;
     border-bottom: 1px solid rgb(192, 236, 236);
+
+    .field {
+        margin-bottom: 15px;
+        display: flex;
+    }
 }
 
-.comment-input .comment-field {
-    margin-bottom: 15px;
-    display: flex;
-}
-  
-.comment-field-name {
+.name {
     flex: 0 0 100px;
     height: 16px;
     line-height: 16px;
     padding-top: 6px;
 }
   
-.comment-field-input {
+.fieldInput {
     flex: 1 0 200px;
     display: flex;
 }
   
-.comment-field-input input,
-.comment-field-input textarea {
+.fieldInput input,
+.fieldInput textarea {
     resize: none;
     outline: none;
     border-radius: 3px;
@@ -43,31 +43,31 @@
     color: #00a3cf;
 }
   
-.comment-field-input textarea {
+.fieldInput textarea {
     height: 100px;
 }
   
-.comment-field-button {
+.button {
     display: flex;
     justify-content: flex-end;
+
+
+    button {
+        width: 80px;
+        border: none;
+        background-color: #00a3cf;
+        outline: none;
+        color: white;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 5px 10px;
+    }
+
+    button:active {
+        background: #13c1f1;
+    }
 }
-  
-.comment-field-button button {
-    width: 80px;
-    border: none;
-    background-color: #00a3cf;
-    outline: none;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-    padding: 5px 10px;
-}
-  
-.comment-field-button button:active {
-    background: #13c1f1;
-}
-  
-/* commentlist css */
+
 .comment {
     position: relative;
     padding: 5px 0px;
@@ -75,17 +75,17 @@
     word-break:break-all;
 }
   
-.comment-username {
+.username {
     padding-bottom: 3px;
     color: rgb(247, 184, 184);
     font-size: 14px;
 }
   
-.comment-content {
+.content {
     font-size: 16px;
-  }
+}
   
-.comment-meta {
+.meta {
     margin-top: 4px;
     font-size: 10px;
     color: rgb(231, 189, 110);
@@ -93,7 +93,7 @@
     justify-content: flex-end;
 }
   
-.comment-delete {
+.delete {
     position: absolute;
     right: 0;
     top: 4px;
@@ -103,6 +103,6 @@
     user-select:none;
 }
   
-.comment-delete:hover {
+.delete:hover {
     color: rgb(243, 116, 116);
 }

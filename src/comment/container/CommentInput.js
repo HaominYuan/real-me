@@ -1,52 +1,40 @@
 import CommentInput from "../component/CommentInput"
 import { connect } from 'react-redux'
-import React, { Component } from 'react'
+import React, {useCallback, useState } from 'react'
 import { addComment } from "../reducer/comment"
 
-class CommentInputContainer extends Component {
-    constructor(props) {
-        super(props)
-        const username = this._loadUsername()
-        this.state = {
-            username
-        }
-    }
-
-    _loadUsername() {
+const CommentInputContainer = (props) => {
+    const loadUsername = useCallback(() => {
         return localStorage.getItem('username') || ""
-    }
+    }, [])
 
-    _saveUsername(username) {
+    const [username] = useState(loadUsername())
+
+    const saveUsername = useCallback(() => {
         localStorage.setItem("username", username)
-    }
+    }, [username])
 
-    onUsernameBlur(username) {
-        this._saveUsername(username)
-    }
-
-    onSubmitComment(comment) {
+    const onSubmitComment = useCallback(comment => {
         if (!comment) return
         if (!comment.username) return alert("请输入用户名")
         if (!comment.content) return alert("请输入评论内容")
 
-        const { comments } = this.props
+        const { comments } = props
         const newComments = [...comments, comment]
         localStorage.setItem('comments', JSON.stringify(newComments))
 
-        if (this.props.onSubmitComment) {
-            this.props.onSubmitComment(comment)
+        if (props.onSubmitComment) {
+            props.onSubmitComment(comment)
         }
-    }
+    }, [props])
 
-    render() {
-        return (
-            <CommentInput
-                username={this.state.username}
-                onUsernameBlur={this.onUsernameBlur.bind(this)}
-                onSubmitComment={this.onSubmitComment.bind(this)}
-            />
-        )
-    }
+    return (
+        <CommentInput
+            username={username}
+            onUsernameBlur={saveUsername}
+            onSubmitComment={onSubmitComment}
+        />
+    )
 }
 
 const mapStateToProps = (state) => {

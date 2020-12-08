@@ -1,37 +1,32 @@
 import CommentList from "../component/CommentList"
 import { connect } from 'react-redux'
-import React, { Component } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { deleteComment, initComments } from "../reducer/comment"
 
+const CommentListContainer = (props) => {
+    const stable = useRef(props.initComments).current
 
-class CommentListContainer extends Component {
-    componentDidMount() {
-        this.props.initComments(this._loadComments())
-    }
+    useEffect(() => {
+        stable(JSON.parse(localStorage.getItem('comments')) || [])
+    }, [stable])
 
-    _loadComments() {
-        return JSON.parse(localStorage.getItem('comments')) || []
-    }
-
-    handleDeleteComment(commentIndex) {
-        const { comments } = this.props 
+    const handleDeleteComment = (commentIndex) => {
+        const { comments } = props
         const newComments = [
             ...comments.slice(0, commentIndex),
             ...comments.slice(commentIndex + 1)
         ]
         localStorage.setItem('comments', JSON.stringify(newComments))
-        if (!this.props.deleteComment) return
-        this.props.deleteComment(commentIndex)
+        if (!props.deleteComment) return
+        props.deleteComment(commentIndex)
     }
-
-    render() {
-        return (
-            <CommentList 
-                comments={this.props.comments}
-                onDeleteComment={this.handleDeleteComment.bind(this)}
-            />
-        )
-    }
+    
+    return (
+        <CommentList
+            comments={props.comments}
+            onDeleteComment={handleDeleteComment}
+        />
+    )
 }
 
 const mapStateToProps = (state) => {

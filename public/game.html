@@ -1,11 +1,18 @@
 <canvas id="gc" width="400" height="400"></canvas>
+<style>
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
 
 <script>
     window.onload = function () {
         canv = document.getElementById("gc")
         ctx = canv.getContext("2d")
         document.addEventListener("keydown", keyPush)
-        setInterval(game, 1000)
+        setInterval(game, 100)
     }
 
     let px = py = 10

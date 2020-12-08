@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import style from '../comment.module.scss'
 
 export default props => {
     const [timeString, setTimeString] = useState("")
-
-
     const updateTimeString = useCallback(() => {
         const duration = (new Date().getTime() - props.comment.createdtime) / 1000;
         setTimeString(
@@ -28,20 +27,20 @@ export default props => {
 
     const { comment } = props
     return (
-        <div className="comment">
-            <div className="comment-username">
+        <div className={style.comment}>
+            <div className={style.username}>
                 {comment.username}
             </div>
             <span></span>
-            <div className="comment-content">
+            <div className={style.content}>
                 {comment.content}
             </div>
-            <div className="comment-meta">
-                <div className="comment-meta-createdtime">
+            <div className={style.meta}>
+                <div className={style.createdtime}>
                     {timeString}
                 </div>
             </div>
-            <span className="comment-delete"
+            <span className={style.delete}
                 onClick={handleDeleteComment}>
                 删除
                 </span>

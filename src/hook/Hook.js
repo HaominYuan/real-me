@@ -3,7 +3,7 @@ import React, { useEffect, useReducer, useContext } from 'react'
 const EDispatch = React.createContext(null)
 const initialState = {color: 'red'}
 
-function reducer(state, action) {
+const reducer = (state, action) => {
     switch(action.type) {
         case 'change-color':
             return {color: action.color}
@@ -12,7 +12,7 @@ function reducer(state, action) {
     }
 }
 
-function Button(props) {
+const Button = props => {
     const dispatch = useContext(EDispatch)
 
     return (
@@ -22,7 +22,7 @@ function Button(props) {
     )
 }
 
-function Example(props) {
+const Example = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
