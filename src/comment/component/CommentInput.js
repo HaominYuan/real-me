@@ -1,81 +1,63 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-export default class CommentInput extends Component {
-    static propTypes = {
-        username: PropTypes.string,
-        onUsernameBlur: PropTypes.func,
-        onSubmitComment: PropTypes.func
-    }
+export default props => {
+    const [username, setUsername] = useState(props.username)
+    const [content, setContent] = useState("")
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: props.username,
-            content: ""
-        }
-    }
+    const textareaRef = useRef()
 
-    componentDidMount() {
-        this.textarea.focus()
-    }
+    useEffect(() => {
+        textareaRef.current.focus()
+    }, [])
 
-    handleContentChange(event) {
-        this.setState({
-            content: event.target.value
-        })
-    }
+    const handleContentChange = useCallback(event => {
+        setContent(event.target.value)
+    }, [])
 
-    handleUsernameChange(event) {
-        this.setState({
-            username: event.target.value
-        })
-    }
+    const handleUsernameChange = useCallback(event => {
+        setUsername(event.target.value)
+    }, [])
 
-    handleUsernameBlur(event) {
-        if (!this.props.onUsernameBlur) return
-        this.props.onUsernameBlur(event.target.value)
-    }
+    const handleUsernameBlur = useCallback(event => {
+        if (!props.onUsernameBlur) return
+        props.onUsernameBlur(event.target.value)
+    }, [props])
 
-    handleSubmitComment() {
-        if (!this.props.onSubmitComment) return
-        this.props.onSubmitComment({
-            username: this.state.username,
-            content: this.state.content,
+    const handleSubmitComment = () => {
+        if (!props.onSubmitComment) return
+        props.onSubmitComment({
+            username: username,
+            content: content,
             createdtime: new Date().getTime()
         })
-        this.setState({
-            content: ""
-        })
+        setContent("")
     }
 
-    render() {
-        return (
-            <div className="comment-input">
-                <div className="comment-field">
-                    <span className='comment-field-name'>用户名：</span>
-                    <div className="comment-field-input">
-                        <input
-                            type="text" value={this.state.username}
-                            onChange={this.handleUsernameChange.bind(this)}
-                            onBlur={this.handleUsernameBlur.bind(this)}
-                        />
-                    </div>
-                </div>
-                <div className="comment-field">
-                    <span className='comment-field-name'>评论内容：</span>
-                    <div className="comment-field-input">
-                        <textarea
-                            value={this.state.content}
-                            onChange={this.handleContentChange.bind(this)}
-                            ref={(textarea) => this.textarea = textarea}
-                        ></textarea>
-                    </div>
-                </div>
-                <div className="comment-field-button">
-                    <button type='button' onClick={this.handleSubmitComment.bind(this)}>发布</button>
+    return (
+        <div className="comment-input">
+            <div className="comment-field">
+                <span className='comment-field-name'>用户名：</span>
+                <div className="comment-field-input">
+                    <input
+                        type="text" value={username}
+                        onChange={handleUsernameChange}
+                        onBlur={handleUsernameBlur}
+                    />
                 </div>
             </div>
-        )
-    }
+            <div className="comment-field">
+                <span className='comment-field-name'>评论内容：</span>
+                <div className="comment-field-input">
+                    <textarea
+                        value={content}
+                        onChange={handleContentChange}
+                        ref={textareaRef}
+                    ></textarea>
+                </div>
+            </div>
+            <div className="comment-field-button">
+                <button type='button' onClick={handleSubmitComment}>发布</button>
+            </div>
+        </div>
+    )
 }

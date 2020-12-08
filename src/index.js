@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Tic from "./tic/Tic";
-import "./index.scss";
+import style from "./index.module.scss";
+import "./antd.scss"
 import CommentApp from "./comment/CommentApp";
 import { Provider } from 'react-redux'
 import commentReducer from './comment/reducer/comment'
 import { createStore } from "redux";
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter, Redirect, Switch } from "react-router-dom";
 import Home from './home/Home';
 import Article from './article/Article'
 import Decorate from "./decorate/Decorate";
@@ -18,7 +19,7 @@ const commentStore = createStore(commentReducer)
 const Index = withRouter(({ history }) => {
     return (
         <Layout>
-            <Header className="header">
+            <Header className={style.header}>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/home']} selectedKeys={[history.location.pathname]}>
                     <Menu.Item key="/home">
                         <Link to="/home">Home</Link>
@@ -40,13 +41,17 @@ const Index = withRouter(({ history }) => {
                     </Menu.Item>
                 </Menu>
             </Header>
-            <Content className="content">
-                <Route exact path="/home" component={Home} />
-                <Route exact path="/article" component={Article} />
-                <Route exact path="/decorate" component={Decorate} />
-                <Route exact path="/tic-tac-toe" render={() => <Tic length={3} />} />
-                <Route exact path="/commet-app" component={CommentApp} />
-                <Route exact path="/login" component={Login} />
+            <Content className={style.content}>
+                <Switch>
+                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/article" component={Article} />
+                    <Route exact path="/decorate" component={Decorate} />
+                    <Route exact path="/tic-tac-toe" render={() => <Tic length={3} />} />
+                    <Route exact path="/commet-app" component={CommentApp} />
+                    <Route exact path="/login" component={Login} />
+                    <Redirect exact path="/" to="/home" />
+                </Switch>
+
             </Content>
         </Layout>
     )

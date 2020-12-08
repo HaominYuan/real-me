@@ -4,7 +4,7 @@ import CommentList from './container/CommentList'
 import "./comment.scss"
 
 
-const CommentApp = () => {
+export default () => {
     return (
         <div className="comment-app">
             <CommentInput />
@@ -12,5 +12,3 @@ const CommentApp = () => {
         </div>
     )
 }
-
-export default  CommentApp

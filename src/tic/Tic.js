@@ -3,7 +3,7 @@ import Board from "./Board";
 import style from "./tic.module.scss";
 import Info from "./Info";
 
-const Tic = props => {
+export default props => {
     const [history, setHistory] = useState([{
         squares: Array(Math.pow(props.length, 2)).fill({}),
         xIsNext: false,
@@ -87,5 +87,3 @@ const calculateWinner = squares => {
     if (real.every((value) => value != null)) return "Tie";
     return null;
 }
-
-export default Tic;
