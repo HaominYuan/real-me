@@ -1,13 +1,29 @@
-import React, { useState } from 'react'
-import { Table, Tag, Space, Button } from 'antd'
+import React, { useReducer } from 'react'
+import { Table, Tag } from 'antd'
 import style from './subject.module.scss'
 import Detail from './Detail'
+import ApplyButton from './ApplyButton'
+import DetailButton from './DetailButton'
+
+export const SContext = React.createContext(null)
+const initialState = { visible: false }
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'change-visible':
+            return { visible: action.visible, content: action.content, width: action.width }
+        default:
+            return state
+    }
+}
+
 
 const trans = (text) => {
     return (
         <span style={{ display: 'table', margin: '0 auto' }}>{text}</span>
     )
 }
+
 
 const columns = [
     {
@@ -19,7 +35,7 @@ const columns = [
         title: trans('Subject'),
         dataIndex: 'subject',
         key: 'subject',
-        render: text => <Button type="link">{text}</Button>
+        render: text => <DetailButton content={text}/>
     },
     {
         title: trans('Email'),
@@ -50,10 +66,8 @@ const columns = [
         title: trans('Action'),
         key: 'action',
         render: (text, record) => (
-            <Space size="middle">
-                <Button type="link">Apply</Button>
-            </Space>
-        ),
+            <ApplyButton content={text.name}/>
+        )
     },
 ];
 
@@ -82,13 +96,14 @@ const data = [
 ];
 
 export default props => {
-
-    const [visible] = useState(false)
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     return (
         <>
-            <Table columns={columns} dataSource={data} className={style.subject} />
-            <Detail visible={visible}/>
+            <SContext.Provider value={{state, dispatch}}>
+                <Table columns={columns} dataSource={data} className={style.subject} />
+                <Detail visible={state.visible} />
+            </SContext.Provider>
         </>
 
     )

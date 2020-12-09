@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Modal} from 'antd'
+import {SContext} from './Subject'
 
 export default props => {
-    const [isModalVisible, setIsModalVisible] = useState(props.visible);
+    const { state, dispatch } = useContext(SContext)
 
     const handleOk = () => {
-        setIsModalVisible(false);
+        dispatch({ type: 'change-visible', visible: false })
     };
 
     const handleCancel = () => {
-        setIsModalVisible(false);
+        dispatch({ type: 'change-visible', visible: false })
     };
 
     return (
         <>
             <Modal
                 title="Basic Modal"
-                visible={isModalVisible}
+                visible={state.visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
+                width={state.width}
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <p>{state.content}</p>
             </Modal>
         </>
     );
