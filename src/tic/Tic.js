@@ -67,24 +67,32 @@ export default props => {
 
         let newWinner = calculateWinner(newSquares);
 
+        let next = history.concat([{
+            squares: newSquares,
+            xIsNext: !xIsNext,
+            winner: newWinner,
+            position
+        }])
+
         if (!newWinner) {
             const real = newSquares.map(square => square.value);
-            getBest(real, false, 0)
-            newSquares[index] = { value: 'X' }
-            newWinner = calculateWinner(newSquares)
-            xIsNext = !xIsNext
-        }
+            getBest(real, xIsNext, 0)
 
+            const lastSquares = JSON.parse(JSON.stringify(newSquares))
 
+            lastSquares[index] = !xIsNext ? { value: "X" } : { value: "O" };
+            const lastWinner = calculateWinner(lastSquares)
 
-        setHistory(prev => {
-            return prev.concat([{
-                squares: newSquares,
-                xIsNext: !xIsNext,
-                winner: newWinner,
-                position,
+            next = next.concat([{
+                squares: lastSquares,
+                xIsNext,
+                winner: lastWinner,
+                position: index
             }])
-        })
+        }
+        
+        setHistory(next)
+
     }, [history])
 
     const jumpTo = move => {
