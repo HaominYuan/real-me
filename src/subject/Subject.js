@@ -93,7 +93,7 @@ const data = [
         subject: 'sed eiusmod tempor incididunt',
         tags: ['cool', 'teacher'],
     },
-];
+]
 
 export default props => {
     const [state, dispatch] = useReducer(reducer, initialState)
