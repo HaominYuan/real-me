@@ -50,5 +50,6 @@
   },
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.2.0"
-  }
+  },
+  "proxy": "https://42.194.215.137/api"
 }

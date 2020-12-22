@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
 import style from './login.module.scss'
 import { useHistory } from 'react-router-dom';
+import axios from "axios";
 
 const layout = {
     labelCol: {
@@ -19,20 +20,24 @@ const tailLayout = {
     },
 };
 
-const user = {
-    username: 'tstxxy',
-    password: 'qwer1234'
-}
-
 export default () => {
     const history = useHistory()
 
     const onFinish = (values) => {
-        if (values.username === user.username && values.password === user.password) {
-            history.push('/subject')
-        } else {
-            console.log("error")
-        }
+        axios("/login", {
+            params: {
+              username: values.username,
+              password: values.password
+            }
+        }).then(response => {
+            if (response.data === 'Yes') {
+                history.push("/subject")
+            } else {
+                console.log("error")
+            }
+        }).catch(error => {
+            console.log(error)
+        })
     };
 
     const onFinishFailed = (errorInfo) => {
