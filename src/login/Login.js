@@ -20,11 +20,13 @@ const tailLayout = {
     },
 };
 
+const URI = 'https://42.194.215.137/api'
+
 export default () => {
     const history = useHistory()
 
     const onFinish = (values) => {
-        axios("/login", {
+        axios(URI + "/login", {
             params: {
               username: values.username,
               password: values.password
